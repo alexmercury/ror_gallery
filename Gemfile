@@ -2,11 +2,21 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'puma', '~> 2.5.1'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
 
+gem 'kaminari', '~> 0.14.1'
+
+gem 'haml', '~> 4.0.3'
+gem 'bootstrap-sass', '~> 2.3.2.2'
+
+gem 'devise', '~> 3.0.3'
+
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
