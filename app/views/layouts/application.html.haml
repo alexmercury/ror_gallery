@@ -6,4 +6,11 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    = yield
+    %header
+      .navbar.navbar-inner.navbar-fixed-top
+        .row-fluid
+          .span4.offset4
+            MENU
+
+    .content
+      = yield
