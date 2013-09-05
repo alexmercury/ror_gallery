@@ -2,7 +2,7 @@ class Picture < ActiveRecord::Base
 
   attr_accessible :title, :image, :category_id
 
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   has_many :likes, dependent: :destroy
 
   has_attached_file :image,
