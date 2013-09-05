@@ -1,2 +1,8 @@
-%h1 Pictures#index
-%p Find me in app/views/pictures/index.html
+.container
+  %h1 Picture
+  %div
+    = paginate @pictures
+    - @pictures.each do |picture|
+      %div
+        = image_tag picture.image.url
+        = link_to picture.image_file_name, picture_path( picture.category.title, picture.id)

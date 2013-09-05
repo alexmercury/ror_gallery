@@ -2,8 +2,10 @@ class Picture < ActiveRecord::Base
 
   attr_accessible :title, :image, :category_id
 
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   has_many :likes, dependent: :destroy
+
+  paginates_per 5
 
   has_attached_file :image,
                     url: '/assets/picture/:id/:style/:basename.:extension',

@@ -1,2 +1,5 @@
-%h1 Pictures#show
-%p Find me in app/views/pictures/show.html
+.container
+  %h1= @picture.title
+  %div
+    %div= @picture.image_file_name
+    = image_tag @picture.image.url
