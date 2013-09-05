@@ -5,7 +5,7 @@ ActiveAdmin.register Picture do
   index do
     selectable_column
     column 'image' do |picture|
-       image_tag picture.image.url(:mini), height: 40, title: picture.image_file_name
+       image_tag picture.image.url(:mini), width: 40, title: picture.image_file_name
     end
     column :title
     column :created_at
@@ -19,7 +19,7 @@ ActiveAdmin.register Picture do
     f.inputs 'Admin Details' do
       f.input :title, as: :string
       f.input :category
-      f.input :image, as: :file, hint: f.object.image.nil? ? f.template.content_tag(:span, 'no map yet') : f.template.image_tag(f.object.image.url)
+      f.input :image, as: :file, hint: f.template.image_tag(f.object.image.url)
     end
     f.actions
   end
