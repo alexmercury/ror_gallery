@@ -18,6 +18,7 @@ ActiveAdmin.register Picture do
   form html: { :multipart => true } do |f|
     f.inputs 'Admin Details' do
       f.input :title, as: :string
+      f.input :category
       f.input :image, as: :file, hint: f.object.image.nil? ? f.template.content_tag(:span, 'no map yet') : f.template.image_tag(f.object.image.url)
     end
     f.actions

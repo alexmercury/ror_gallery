@@ -1,6 +1,8 @@
 class Picture < ActiveRecord::Base
 
-  attr_accessible :title, :image
+  attr_accessible :title, :image, :category_id
+
+  belongs_to :category
 
   has_attached_file :image,
                     url: '/assets/picture/:id/:style/:basename.:extension',
