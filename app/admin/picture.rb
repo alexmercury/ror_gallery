@@ -5,7 +5,7 @@ ActiveAdmin.register Picture do
   index do
     selectable_column
     column 'image' do |picture|
-       image_tag picture.image.url(:mini), height: 40, title: picture.image_file_name
+       image_tag picture.image.url(:mini), width: 40, title: picture.image_file_name
     end
     column :title
     column :created_at
