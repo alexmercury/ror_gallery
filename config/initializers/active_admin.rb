@@ -110,6 +110,8 @@ ActiveAdmin.setup do |config|
   #     without_comments.allow_comments = false
   #   end
 
+  config.allow_comments = false
+
 
   # == Batch Actions
   #
