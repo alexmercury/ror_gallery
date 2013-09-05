@@ -8,7 +8,10 @@ Tit::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :pictures
+  #resources :categories
 
+  get 'categories'=> 'categories#index'
+  get 'categories/:title' => 'categories#show', as: :category
 
 
 end
