@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905102752) do
+ActiveRecord::Schema.define(:version => 20130905113236) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,15 +37,21 @@ ActiveRecord::Schema.define(:version => 20130905102752) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "likes", :force => true do |t|
+    t.integer "picture_id"
+    t.integer "user_id"
+  end
+
   create_table "pictures", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "category_id"
+    t.integer  "likes_count",        :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -61,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20130905102752) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "likes_count",            :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

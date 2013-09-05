@@ -3,6 +3,7 @@ class Picture < ActiveRecord::Base
   attr_accessible :title, :image, :category_id
 
   belongs_to :category
+  has_many :likes, dependent: :destroy
 
   has_attached_file :image,
                     url: '/assets/picture/:id/:style/:basename.:extension',
