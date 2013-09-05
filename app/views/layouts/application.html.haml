@@ -11,6 +11,11 @@
         .row-fluid
           .span4.offset4
             MENU
-
     .content
-      = yield
+      .row-fluid
+        .span1
+        .span7
+          = yield
+        .span3
+          = render 'shared/user_bar'
+        .span1
