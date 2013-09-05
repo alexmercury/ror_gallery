@@ -19,7 +19,7 @@ ActiveAdmin.register Picture do
     f.inputs 'Admin Details' do
       f.input :title, as: :string
       f.input :category
-      f.input :image, as: :file, hint: f.object.image.nil? ? f.template.content_tag(:span, 'no map yet') : f.template.image_tag(f.object.image.url)
+      f.input :image, as: :file, hint: f.template.image_tag(f.object.image.url)
     end
     f.actions
   end
