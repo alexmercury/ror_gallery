@@ -1,0 +1,6 @@
+.container
+  %h1 Categories
+  %div
+    - @categories.each do |category|
+      %div
+        = link_to category.title, category_path(category.title), title: "Category: #{category.title}"
