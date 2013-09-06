@@ -7,9 +7,10 @@ Tit::Application.routes.draw do
 
   devise_for :users
 
+  get 'pictures' => 'pictures#index', as: :pictures
   get 'categories/:title/:id' => 'pictures#show', as: :picture
 
-  get 'categories'=> 'categories#index'
+  get 'categories'=> 'categories#index', as: :categories
   get 'categories/:title' => 'categories#show', as: :category
 
 end
