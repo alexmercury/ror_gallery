@@ -10,7 +10,17 @@
       .navbar.navbar-inner.navbar-fixed-top
         .row-fluid
           .span4.offset4
-            MENU
-
+            = link_to 'Home', root_path
+            %span= '|'
+            = link_to 'Categories', categories_path
+            %span= '|'
+            = link_to 'Picture', pictures_path
     .content
-      = yield
+      .row-fluid
+        .span1
+        .span7
+          = yield
+        .span3
+          - unless 'registrations passwords sessions'.include? controller.controller_name
+            = render 'shared/user_bar'
+        .span1

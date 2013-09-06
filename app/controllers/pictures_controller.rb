@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @picture = Picture.includes(:category).find(params[:id])
+    @picture = Picture.includes(likes: :user).find(params[:id])
 
     unless @picture.category.title == params[:title]
       redirect_to categories_path
