@@ -2,7 +2,7 @@
   %h1= @picture.title
   %div
     %div= "Comments (#{@picture.comments_count})"
-    = image_tag @picture.image.url, id: 'picture', alt: "#{@picture.id} picture", class: 'img-polaroid', width: 128, title: @picture.image_file_name
+    = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid', width: 128
   %div.btn-group
     %span.btn.btn-inverse.disabled
       = "likes count (#{@picture.likes_count})"
@@ -12,12 +12,11 @@
     - else
       %a.btn.btn-inverse#like
         %i.icon-thumbs-up.icon-white
-
   - @picture.likes.each do |like|
     %div= like.user.name
-
   %div
-    - @picture.comments.each do |comment|
+    = paginate @comments
+    - @comments.reverse.each do |comment|
       .well
         %span= comment.user.name
         %span= comment.description
