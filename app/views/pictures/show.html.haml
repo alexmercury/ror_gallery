@@ -1,8 +1,8 @@
 .container
   %h1= @picture.title
   %div
-    %div= @picture.image_file_name
-    = image_tag @picture.image.url, id: 'picture', alt: "#{@picture.id} picture", class: 'img-polaroid', width: 128
+    %div= "Comments (#{@picture.comments_count})"
+    = image_tag @picture.image.url, id: 'picture', alt: "#{@picture.id} picture", class: 'img-polaroid', width: 128, title: @picture.image_file_name
   %div.btn-group
     %span.btn.btn-inverse.disabled
       = "likes count (#{@picture.likes_count})"

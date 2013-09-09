@@ -1,7 +1,13 @@
-%div
+.well
   - if current_user
+    = current_user.name
+    = link_to 'Sign out', destroy_user_session_path, method:  :delete, confirm: 'You sure?'
     %div
-      = current_user.email
-      = link_to 'Sign out', destroy_user_session_path, method:  :delete, confirm: 'You sure?'
+      %span.badge.badge-inverse
+        %i.icon-comment.icon-white
+        = current_user.comments_count
+      %span.badge.badge-inverse
+        %i.icon-thumbs-up.icon-white
+        = current_user.likes_count
   - else
     = render partial: 'shared/log_in_form'

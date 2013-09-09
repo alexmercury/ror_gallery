@@ -15,5 +15,7 @@ class Picture < ActiveRecord::Base
                     styles: {mini:'40x40>'}
 
   validates :title, presence: true, length: {minimum: 5, maximum: 255}
+  validates :category_id, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates_attachment :image, :presence => true, :size => { :in => 0..5.megabytes }
 
 end
