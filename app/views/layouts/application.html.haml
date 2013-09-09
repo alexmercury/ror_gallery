@@ -16,6 +16,12 @@
             %span= '|'
             = link_to 'Picture', pictures_path
     .content
+      - if flash[:notice]
+        %p.alert.alert-success
+          = flash.now[:notice]
+      - if flash[:alert]
+        %p.alert.alert-error
+          = flash.now[:alert]
       .row-fluid
         .span1
         .span7
