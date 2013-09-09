@@ -1,0 +1,35 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  %div
+    .control-group
+      .controls
+        .input-prepend
+          %span.add-on
+            %label.control-label{for: 'user_email'}
+              %i.icon-envelope
+          = f.email_field :email, autofocus: true, placeholder: 'Enter your email'
+  %div
+    .control-group
+      .controls
+        .input-prepend
+          %span.add-on
+            %label.control-label{for: 'user_password'}
+              %i.icon-lock
+          = f.password_field :password, placeholder: 'Enter your password'
+
+  - if devise_mapping.rememberable?
+    %div
+      .control-group
+        .controls
+          .input-prepend
+            %span.add-on
+              %label.control-label{for: 'user_remember_me'}
+                %i.icon-time
+            %span.add-on
+              %label{for: 'user_remember_me', style: 'width: 206px;'}
+                = f.check_box :remember_me, placeholder: 'Enter your email'
+                %span Remember me
+  %div
+    = link_to new_user_registration_path, class: 'btn btn-large btn-success' do
+      %i.icon-pencil
+      %span{style: 'color: #000000;'} Register
+    = f.submit 'Login', class: 'btn btn-large btn-inverse'

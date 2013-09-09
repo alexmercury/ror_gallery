@@ -1,2 +1,17 @@
-%h1 Pictures#show
-%p Find me in app/views/pictures/show.html
+.container
+  %h1= @picture.title
+  %div
+    %div= @picture.image_file_name
+    = image_tag @picture.image.url, id: 'picture', alt: "#{@picture.id} picture"
+  %div.btn-group
+    %span.btn.disabled
+      = "likes count (#{@picture.likes_count})"
+    - if @picture.likes.any? { |like| like[:user_id] == current_user.id }
+      %a.btn#dislike
+        %i.icon-thumbs-down
+    - else
+      %a.btn#like
+        %i.icon-thumbs-up
+
+  - @picture.likes.each do |like|
+    %div= like.user.name

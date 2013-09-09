@@ -1,0 +1,8 @@
+.container
+  %h1= @category.title
+  %div
+    = paginate @pictures
+    - @pictures.each do |picture|
+      %div
+        = link_to picture.image_file_name, picture_path( @category.title, picture.id)
+        = image_tag picture.image.url
