@@ -10,10 +10,14 @@ gem 'haml', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 
 gem 'devise', '~> 3.0.3'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
 gem 'jquery-rails', '~> 2.3.0'
+
+gem 'rails_config'
 
 
 

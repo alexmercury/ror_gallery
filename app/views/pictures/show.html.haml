@@ -1,17 +1,28 @@
 .container
   %h1= @picture.title
   %div
-    %div= @picture.image_file_name
-    = image_tag @picture.image.url, id: 'picture', alt: "#{@picture.id} picture"
+    %div= "Comments (#{@picture.comments_count})"
+    = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid', width: 128
   %div.btn-group
-    %span.btn.disabled
+    %span.btn.btn-inverse.disabled
       = "likes count (#{@picture.likes_count})"
     - if @picture.likes.any? { |like| like[:user_id] == current_user.id }
-      %a.btn#dislike
-        %i.icon-thumbs-down
+      %a.btn.btn-inverse#dislike
+        %i.icon-thumbs-down.icon-white
     - else
-      %a.btn#like
-        %i.icon-thumbs-up
-
+      %a.btn.btn-inverse#like
+        %i.icon-thumbs-up.icon-white
   - @picture.likes.each do |like|
     %div= like.user.name
+  %div
+    = paginate @comments
+    - @comments.reverse.each do |comment|
+      .well
+        %span= comment.user.name
+        %span= comment.description
+        %span= comment.created_at
+  .well
+    = form_for @picture.comments.build, :url => comment_create_path do  |f|
+      = f.hidden_field :picture_id
+      = f.text_area :description, rows: 3, placeholder: 'Comment text...'
+      = f.submit 'add comment'

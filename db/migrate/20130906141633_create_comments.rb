@@ -7,5 +7,9 @@ class CreateComments < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_column :pictures, :comments_count, :integer, default: 0
+    add_column :users, :comments_count, :integer, default: 0
+
   end
 end
