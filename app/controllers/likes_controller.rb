@@ -4,6 +4,7 @@ class LikesController < ApplicationController
 
   def create
     like = current_user.likes.new(picture_id: params[:picture_id])
+
     if like.save
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
