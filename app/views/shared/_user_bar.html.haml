@@ -1,5 +1,5 @@
 .well
-  - if current_user
+  - if user_signed_in?
     = current_user.name
     = link_to 'Sign out', destroy_user_session_path, method:  :delete, confirm: 'You sure?'
     %div

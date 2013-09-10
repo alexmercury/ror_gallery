@@ -15,6 +15,9 @@ Tit::Application.routes.draw do
   post 'like' => 'likes#create'
   post 'dislike' => 'likes#destroy'
 
+  post 'subscribe' => 'categories#subscribe'
+  post 'unsubscribe' => 'categories#unsubscribe'
+
   get 'categories'=> 'categories#index', as: :categories
   get 'categories/:title' => 'categories#show', as: :category
 

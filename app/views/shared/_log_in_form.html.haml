@@ -34,4 +34,8 @@
       %span{style: 'color: #000000;'} Register
     = f.submit 'Login', class: 'btn btn-large btn-inverse'
     %br
-    = link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook)
+    %br
+    = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-link' do
+      = image_tag '/assets/facebook.png', width: 40
+      Login with
+      %b facebook

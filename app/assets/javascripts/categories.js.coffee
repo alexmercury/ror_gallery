@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$(document).ready ->
+
+  $(".subscribe").click ->
+    $.post "/subscribe",  {category_id: $(this).attr 'id'}
+    false
+
+  $(".unsubscribe").click ->
+    $.post "/unsubscribe",  {category_id: $(this).attr 'id'}
+    false

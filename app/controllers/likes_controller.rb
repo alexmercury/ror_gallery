@@ -20,7 +20,7 @@ class LikesController < ApplicationController
 
     like = Like.where('user_id = :user_id AND picture_id = :picture_id', user_id: current_user.id, picture_id: params[:picture_id]).first
 
-    if Like.destroy(like.id)
+    if like.destroy
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
       end

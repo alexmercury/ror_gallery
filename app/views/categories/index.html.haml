@@ -1,6 +1,19 @@
 .container
   %h1 Categories
-  %div
+  %ul.nav.nav-tabs.nav-stacked
     - @categories.each do |category|
-      %div
-        = link_to category.title, category_path(category.title), title: "Category: #{category.title}"
+      %li
+        = link_to category_path(category.title), title: "Category: #{category.title}" do
+          = category.title.upcase
+          %span
+            %i.icon-picture
+            = category.pictures_count
+          %span
+            %i.icon-calendar
+            = category.updated_at
+          - if category.category_subscriptions.any? { |subscription| subscription[:user_id] == current_user.id }
+            %span.btn.btn-inverse.unsubscribe{id: category.id}
+              %i.icon-eye-close.icon-white
+          - else
+            %span.btn.btn-inverse.subscribe{id: category.id}
+              %i.icon-eye-open.icon-white
