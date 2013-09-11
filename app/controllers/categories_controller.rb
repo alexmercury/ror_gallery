@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.includes(:category_subscriptions).all
+    @categories = Category.includes(:users)
   end
 
   def show
