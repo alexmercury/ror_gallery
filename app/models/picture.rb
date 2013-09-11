@@ -1,5 +1,7 @@
 class Picture < ActiveRecord::Base
 
+  after_create :subscribe_mailer
+
   attr_accessible :title, :image, :category_id
 
   belongs_to :category, counter_cache: true
@@ -17,5 +19,12 @@ class Picture < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 5, maximum: 255}
   validates :category_id, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates_attachment :image, :presence => true, :size => { :in => 0..5.megabytes }
+
+
+  def subscribe_mailer
+    #users = User.where('users.id IN (SELECT category_subscriptions.user_id FROM category_subscriptions WHERE category_id = :id)', id: self.category_id)
+    #Resque.enqueue(CategorySubscriptionMailer, users)
+  end
+
 
 end

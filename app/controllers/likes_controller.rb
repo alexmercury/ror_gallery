@@ -3,6 +3,7 @@ class LikesController < ApplicationController
   before_filter :authenticate_user!
 
   def create
+
     like = current_user.likes.new(picture_id: params[:picture_id])
 
     if like.save

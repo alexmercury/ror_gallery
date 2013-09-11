@@ -1,13 +1,12 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
   %body
-    %h1
-    %p
-      You have successfully signed up to example.com,
-      your username is: #{@user.name}.
-      %br/
-    %p
-      To login to the site, just follow this link: #{@url}.
-    %p Thanks for joining and have a great day!
+    %h1= "Hello #{@user.name} !"
+    %div
+      %span You subscribed to category:
+      %span= link_to @picture.category.title, category_url(@picture.category.title, host: Settings.mailer.url_host)
+    %div
+      %span New picture:
+      %span= link_to @picture.title, picture_url( @picture.category.title, @picture.id, host: Settings.mailer.url_host)
