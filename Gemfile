@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'puma', '~> 2.5.1'
 gem 'pg'
+gem 'resque', :require => 'resque/server'
+
 
 gem 'kaminari', '~> 0.14.1'
 

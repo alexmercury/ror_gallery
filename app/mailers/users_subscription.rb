@@ -1,13 +1,13 @@
 class UsersSubscription < ActionMailer::Base
+
   default from: Settings.mailer.user_name
 
-  def welcome_email(user)
+  def welcome_email(user, picture)
     @user = user
-    @url  = 'http://example.com/login'
-    mail(to: user.email, subject: 'Welcome to My Awesome Site')
+    @picture  = picture
+    mail(to: user.email, subject: "New picture in the category: #{@picture.category.title} ...")
   end
 
-  #UsersSubscription.welcome_email(current_user).deliver
-
+  #UsersSubscription.welcome_email(user, picture).deliver
 
 end

@@ -2,12 +2,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   private
+  # For gem 'devise' (after 'login/logout' path)
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    categories_path
+    if resource_class == AdminUser
+      admin_dashboard_path
+    else
+      categories_path
+    end
   end
 
 end
