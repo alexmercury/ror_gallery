@@ -26,5 +26,4 @@ class Picture < ActiveRecord::Base
     Resque.enqueue(CategorySubscriptionMailer, self.id)
   end
 
-
 end

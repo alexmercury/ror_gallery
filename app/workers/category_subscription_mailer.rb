@@ -9,7 +9,7 @@ class CategorySubscriptionMailer
 
     unless category.users.blank?
       category.users.each do |user|
-        UsersSubscription.welcome_email(user, picture).deliver
+        UsersSubscription.user_new_picture_inform(user, picture).deliver
       end
     end
 
