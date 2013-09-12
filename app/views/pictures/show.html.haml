@@ -6,14 +6,14 @@
   %div.btn-group
     %span.btn.btn-inverse.disabled
       = "likes count (#{@picture.likes_count})"
-    - if @picture.likes.any? { |like| like[:user_id] == current_user.id }
+    - if @picture.users.include? current_user
       %a.btn.btn-inverse#dislike
         %i.icon-thumbs-down.icon-white
     - else
       %a.btn.btn-inverse#like
         %i.icon-thumbs-up.icon-white
-  - @picture.likes.each do |like|
-    %div= like.user.name
+  - @picture.users.each do |user|
+    %div= user.name
   %div
     = paginate @comments
     - @comments.reverse.each do |comment|

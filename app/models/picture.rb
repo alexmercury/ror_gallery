@@ -7,6 +7,7 @@ class Picture < ActiveRecord::Base
   belongs_to :category, counter_cache: true
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :users, through: :likes
 
   paginates_per 5
 
@@ -22,8 +23,7 @@ class Picture < ActiveRecord::Base
 
 
   def subscribe_mailer
-    #users = User.where('users.id IN (SELECT category_subscriptions.user_id FROM category_subscriptions WHERE category_id = :id)', id: self.category_id)
-    #Resque.enqueue(CategorySubscriptionMailer, users)
+    Resque.enqueue(CategorySubscriptionMailer, self.id)
   end
 
 

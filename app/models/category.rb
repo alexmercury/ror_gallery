@@ -6,6 +6,6 @@ class Category < ActiveRecord::Base
   has_many :category_subscriptions, dependent: :destroy
   has_many :users, through: :category_subscriptions
 
-  validates :title, presence: true, length: {minimum: 5, maximum: 255}
+  validates :title, presence: true, length: {minimum: 1, maximum: 255}
 
 end
