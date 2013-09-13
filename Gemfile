@@ -38,6 +38,19 @@ end
 
 gem 'activeadmin'
 
+group :test, :development do
+  gem 'rspec-rails', '~> 2.4'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver', '~> 2.34.0'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
