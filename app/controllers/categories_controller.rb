@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.includes(:category_subscriptions).all
+    @categories = Category.includes(:users)
   end
 
   def show
-    @category = Category.includes(:category_subscriptions).where('title = :title', title: params[:title]).first
+    @category = Category.includes(:users).where('title = :title', title: params[:title]).first
     @pictures = Picture.where('category_id = :id', id: @category.id).page(params[:page])
   end
 
