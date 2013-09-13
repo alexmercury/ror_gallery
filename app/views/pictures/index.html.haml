@@ -2,7 +2,15 @@
   %h1 Picture
   %div
     = paginate @pictures
-    - @pictures.each do |picture|
+    -# @pictures.each do |picture|
       %div
         = image_tag picture.image.url
         = link_to picture.image_file_name, picture_path( picture.category.title, picture.id)
+  .container_12
+    #featured
+      %ul
+        - @pictures.each do |picture|
+          %li
+            = link_to picture_path( picture.category.title, picture.id) do
+              %span= picture.image_file_name
+              = image_tag picture.image.url
