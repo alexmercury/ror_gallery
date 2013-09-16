@@ -45,7 +45,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'selenium-webdriver', '~> 2.34.0'
+  gem 'selenium-webdriver', '~> 2.35.1'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
