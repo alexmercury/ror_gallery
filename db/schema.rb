@@ -55,14 +55,14 @@ ActiveRecord::Schema.define(:version => 20130913125244) do
   create_table "events", :force => true do |t|
     t.integer  "user_id"
     t.string   "kind"
-    t.string   "description"
     t.integer  "kind_id"
     t.datetime "created_at"
   end
 
   create_table "likes", :force => true do |t|
-    t.integer "picture_id"
-    t.integer "user_id"
+    t.integer  "picture_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
   end
 
   create_table "navigation_events", :force => true do |t|

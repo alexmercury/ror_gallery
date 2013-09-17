@@ -10,9 +10,9 @@ class LikesController < ApplicationController
 
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
-                      kind: 'likes',
-                      kind_id: like.id,
-                      description: 'Like create'})
+                      kind: 'like',
+                      kind_id: like.id
+                     })
 
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
@@ -33,9 +33,9 @@ class LikesController < ApplicationController
 
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
-                      kind: 'likes',
-                      kind_id: like.id,
-                      description: 'Like destroy'})
+                      kind: 'dislike',
+                      kind_id: like.id
+                     })
 
       respond_to do |format|
         format.js{render js:"window.location.reload();"}

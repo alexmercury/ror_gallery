@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
 
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
-                      kind: 'comments',
-                      kind_id: comment.id,
-                      description: 'Comment create'})
+                      kind: 'comment',
+                      kind_id: comment.id
+                     })
 
       redirect_to :back
     else
