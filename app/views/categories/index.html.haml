@@ -11,9 +11,12 @@
           %span
             %i.icon-calendar
             = category.updated_at
-          - if category.category_subscriptions.any? { |subscription| subscription[:user_id] == current_user.id }
-            %span.btn.btn-inverse.unsubscribe{id: category.id}
-              %i.icon-eye-close.icon-white
+          - if user_signed_in?
+            - if category.users.include? current_user
+              %span.btn.btn-inverse.unsubscribe{id: category.id}
+                %i.icon-eye-close.icon-white
+            - else
+              %span.btn.btn-inverse.subscribe{id: category.id}
+                %i.icon-eye-open.icon-white
           - else
-            %span.btn.btn-inverse.subscribe{id: category.id}
-              %i.icon-eye-open.icon-white
+            %span.btn (you must login to subscribe)
