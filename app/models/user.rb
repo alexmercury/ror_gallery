@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :category_subscriptions, dependent: :destroy
   has_many :categories, :through => :category_subscriptions
   has_many :events, dependent: :destroy
+  has_many :navigation_events, dependent: :destroy
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
