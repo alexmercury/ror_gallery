@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
                       kind: 'sign_out',
-                      kind_id: current_user.id,
-                      description: 'user logout'})
-      root_path
+                      kind_id: current_user.id
+                     })
     else
       root_path
     end
@@ -24,8 +23,8 @@ class ApplicationController < ActionController::Base
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
                       kind: 'sign_in',
-                      kind_id: current_user.id,
-                      description: 'user login'})
+                      kind_id: current_user.id
+                     })
       categories_path
     end
   end
@@ -33,7 +32,7 @@ class ApplicationController < ActionController::Base
   def event_user
     if !!current_user
       if 'index show'.include?(params[:action].to_s)
-        Resque.enqueue(UserEvents, {url: request.original_url.to_s, user_id: current_user.id.to_s})
+        Resque.enqueue(UserEventNavigation, {url: request.original_url.to_s, user_id: current_user.id.to_s})
       end
     end
   end
