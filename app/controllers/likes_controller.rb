@@ -3,8 +3,17 @@ class LikesController < ApplicationController
   before_filter :authenticate_user!
 
   def create
+
     like = current_user.likes.new(picture_id: params[:picture_id])
+
     if like.save
+
+      Resque.enqueue(UserEvents,
+                     {user_id: current_user.id,
+                      kind: 'likes',
+                      kind_id: like.id,
+                      description: 'Like create'})
+
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
       end
@@ -20,7 +29,14 @@ class LikesController < ApplicationController
 
     like = Like.where('user_id = :user_id AND picture_id = :picture_id', user_id: current_user.id, picture_id: params[:picture_id]).first
 
-    if Like.destroy(like.id)
+    if like.destroy
+
+      Resque.enqueue(UserEvents,
+                     {user_id: current_user.id,
+                      kind: 'likes',
+                      kind_id: like.id,
+                      description: 'Like destroy'})
+
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
       end

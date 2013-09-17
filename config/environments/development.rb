@@ -16,6 +16,19 @@ Tit::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address:              Settings.mailer.address,
+      port:                 Settings.mailer.port,
+      domain:               Settings.mailer.domain,
+      user_name:            Settings.mailer.user_name,
+      password:             Settings.mailer.password,
+      authentication:       Settings.mailer.authentication,
+      enable_starttls_auto: Settings.mailer.enable_starttls_auto
+  }
+
+  config.action_mailer.default_url_options = {host: Settings.mailer.url_host}
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -33,5 +46,5 @@ Tit::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 end

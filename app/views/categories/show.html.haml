@@ -1,5 +1,10 @@
 .container
   %h1= @category.title
+  - if user_signed_in?
+    - if @category.users.include? current_user
+      %h2 You subscribe
+    - else
+      %h2 You not subscribe
   %div
     = paginate @pictures
     - @pictures.each do |picture|

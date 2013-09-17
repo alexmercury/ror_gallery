@@ -1,0 +1,78 @@
+/* Custom Grid */
+.container_12 {
+	margin-left:auto;
+	margin-right:auto;
+	width:800px;
+	}
+
+/* Common Scroller Styles */
+.roundabout-holder {
+	list-style:none;
+	width:700px;
+	height:300px;
+	margin:0px auto;
+	border:1px solid #aaaaaa; 
+	}
+.roundabout-moveable-item {
+	overflow: hidden;
+	height:256px;
+	width:256px;
+	cursor:pointer;
+	/*border:1px solid #aaaaaa;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	//background:#c3c3c3;*/
+	text-align:center;
+	}
+.roundabout-in-focus img:hover {
+
+	
+	}	
+	
+.roundabout-moveable-item img {
+	
+	margin:0;
+	}
+.roundabout-in-focus {
+	cursor:auto;
+	}
+.roundabout-in-focus:hover {
+	/*-webkit-box-shadow:0px 0px 20px #787878;
+	-moz-box-shadow:0px 0px 20px #787878;
+	background:#e1e1e1;*/
+	}
+.roundabout-holder span {
+	display:none; 
+	font-size:12px!important;
+	position:absolute;
+	bottom:5px;
+	right:5px;
+	padding:5px;
+	background:#f9f9f9;
+	color:#000000;
+	z-index:999;
+    border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px; 
+	border: 1px solid #aaaaaa; 
+	}
+.roundabout-in-focus:hover span {
+	display:inline;
+	
+	}
+.roundabout a:active,.roundabout a:focus,.roundabout a:visited {
+	outline:none;
+	text-decoration:none;
+	}
+.roundabou li {
+	margin:0
+	}
+a img {
+	border:none;
+	outline:0;
+	}
+/* Featured Image Slider */
+#featured {
+	margin:40px 0 40px 0;
+	}	

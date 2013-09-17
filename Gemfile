@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'puma', '~> 2.5.1'
 gem 'pg'
+gem 'resque', :require => 'resque/server'
+
 
 gem 'kaminari', '~> 0.14.1'
 
@@ -10,10 +12,14 @@ gem 'haml', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 
 gem 'devise', '~> 3.0.3'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
 gem 'jquery-rails', '~> 2.3.0'
+
+gem 'rails_config'
 
 
 

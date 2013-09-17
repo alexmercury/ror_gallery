@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906141633) do
+ActiveRecord::Schema.define(:version => 20130913125244) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(:version => 20130906141633) do
     t.integer  "pictures_count", :default => 0
   end
 
+  create_table "category_subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+  end
+
   create_table "comments", :force => true do |t|
     t.text     "description"
     t.integer  "user_id"
@@ -46,9 +52,23 @@ ActiveRecord::Schema.define(:version => 20130906141633) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "kind"
+    t.string   "description"
+    t.integer  "kind_id"
+    t.datetime "created_at"
+  end
+
   create_table "likes", :force => true do |t|
     t.integer "picture_id"
     t.integer "user_id"
+  end
+
+  create_table "navigation_events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.datetime "created_at"
   end
 
   create_table "pictures", :force => true do |t|
@@ -80,6 +100,10 @@ ActiveRecord::Schema.define(:version => 20130906141633) do
     t.integer  "likes_count",            :default => 0
     t.string   "name",                   :default => "user"
     t.integer  "comments_count",         :default => 0
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
