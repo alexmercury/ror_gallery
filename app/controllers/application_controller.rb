@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
   def event_user
     if !!current_user
       if 'index show'.include?(params[:action].to_s)
-        Resque.enqueue(UserEventNavigation, {url: request.original_url.to_s, user_id: current_user.id.to_s})
+        Resque.enqueue(UserEventNavigation,
+                       {url: request.original_url.to_s,
+                        user_id: current_user.id.to_s,
+                        created_at: DateTime.now
+                       })
       end
     end
   end
