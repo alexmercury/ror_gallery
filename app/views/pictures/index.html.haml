@@ -1,7 +1,7 @@
 .container
   %h1 Picture
   %div
-    = paginate @pictures
+    = paginate @pictures, window: 1
     -# @pictures.each do |picture|
       %div
         = image_tag picture.image.url
