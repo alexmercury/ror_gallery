@@ -9,5 +9,8 @@
       %span.badge.badge-inverse
         %i.icon-thumbs-up.icon-white
         = current_user.likes_count
+
+    %div
+      = link_to 'Edit profile', edit_user_registration_path
   - else
     = render partial: 'shared/log_in_form'

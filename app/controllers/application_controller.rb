@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  include SimpleCaptcha::ControllerHelpers
+
   protect_from_forgery
   after_filter :event_user
 
@@ -11,6 +14,7 @@ class ApplicationController < ActionController::Base
                       kind: 'sign_out',
                       kind_id: current_user.id
                      })
+      root_path
     else
       root_path
     end

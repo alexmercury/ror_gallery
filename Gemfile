@@ -17,6 +17,8 @@ gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+
 gem 'jquery-rails', '~> 2.3.0'
 
 gem 'rails_config'
