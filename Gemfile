@@ -17,6 +17,8 @@ gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+
 gem 'jquery-rails', '~> 2.3.0'
 
 gem 'rails_config'
@@ -37,6 +39,19 @@ end
 
 
 gem 'activeadmin'
+
+group :test, :development do
+  gem 'rspec-rails', '~> 2.4'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
