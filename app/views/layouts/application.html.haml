@@ -9,13 +9,14 @@
   %body
     .container
       .content-wrapper
-        %header.well
+        %header.well.well-small
           %span
             = link_to 'Home', root_path, class: 'btn'
           %span
             = link_to 'Categories', categories_path, class: 'btn'
           %span
             = link_to 'Picture', pictures_path, class: 'btn'
+          = render partial: 'shared/user_modal'
         .content
           - if flash[:notice]
             %p.alert.alert-success
@@ -27,8 +28,7 @@
             .span1
             .span7
               = yield
-            .span3
-              - unless 'registrations passwords sessions'.include? controller.controller_name
-                = render 'shared/user_bar'
-            .span1
+      #modal_content
+        = yield :modal_content
+
       %footer.well
