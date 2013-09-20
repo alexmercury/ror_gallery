@@ -21,14 +21,13 @@
           - if flash[:notice]
             %p.alert.alert-success
               = flash.now[:notice]
+              %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
           - if flash[:alert]
             %p.alert.alert-error
               = flash.now[:alert]
-          .row-fluid
-            .span1
-            .span7
-              = yield
+              %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+          = yield
       #modal_content
         = yield :modal_content
-
-      %footer.well
+      %footer.well.text-center
+        = "RoR Mercury © #{DateTime.now.strftime('%Y')}"

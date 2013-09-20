@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
 getImgSize = (imgSrc, element) ->
   newImg = new Image()
   newImg.onload = ->
@@ -10,16 +6,17 @@ getImgSize = (imgSrc, element) ->
 
     # Size Slider Item 256X256
     if (width / 256) <= (height / 256)
-      element.attr "style", "height: 256px;"
+      element.attr "style", "height: 100%;"
     else
-      element.attr "style", "width: 256px;"
-      margin = (256 - (256 * height / width)) / 2
-      element.attr "style", "margin-top:" + margin + "px;"
+      element.attr "style", "width: 100%;"
+      unless (element.attr('alt')).toString() == 'slider-img'
+        margin = (256 - (256 * height / width))/2.56
+        element.attr "style", "margin-top:" + margin + "%;"
 
-  newImg.src = imgSrc # this must be done AFTER setting onload
+  newImg.src = imgSrc
   true
 
-$(document).ready -> #Start up our Featured Project Carosuel
+$(document).ready ->
 
   $("#featured ul").roundabout
     easing: "easeOutInCirc"
