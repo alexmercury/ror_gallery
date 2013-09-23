@@ -1,0 +1,6 @@
+$(document).ready ->
+
+  pusher = new Pusher("<%= Settings.pusher.app_key %>")
+  channel = pusher.subscribe("test_channel")
+  channel.bind "my_event", (data) ->
+    alert data.message

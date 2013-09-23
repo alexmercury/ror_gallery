@@ -163,6 +163,9 @@ GEM
     polyglot (0.3.3)
     puma (2.5.1)
       rack (>= 1.1, < 2.0)
+    pusher (0.9.4)
+      multi_json (~> 1.0)
+      signature (~> 0.1.2)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -227,6 +230,7 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.3.0)
       activesupport (>= 3.0.0)
+    signature (0.1.7)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -276,6 +280,7 @@ DEPENDENCIES
   paperclip!
   pg
   puma (~> 2.5.1)
+  pusher
   rails (= 3.2.13)
   rails_config
   resque
