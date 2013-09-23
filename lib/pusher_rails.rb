@@ -12,4 +12,8 @@ module PusherRails
     })
   end
 
+  def comment_add(data = {})
+    Pusher['comments_channel'].trigger('comment_event', data)
+  end
+
 end

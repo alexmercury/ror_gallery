@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
                       kind_id: comment.id
                      })
 
+      PusherRails.comment_add({user_name: current_user.name, comment: comment})
+
       redirect_to :back
     else
       redirect_to :back, alert: comment.errors.full_messages.join(', ')
