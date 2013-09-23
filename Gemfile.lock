@@ -265,6 +265,7 @@ DEPENDENCIES
   haml (~> 4.0.3)
   jquery-rails (~> 2.3.0)
   kaminari (~> 0.14.1)
+  nokogiri (~> 1.6.0)
   omniauth
   omniauth-facebook
   paperclip!

@@ -1,0 +1,7 @@
+%h1 Title
+
+- if @img_src
+  %ul
+    - @img_src.each do |img|
+      %li
+        %img{src: img.to_s, height: 100}
