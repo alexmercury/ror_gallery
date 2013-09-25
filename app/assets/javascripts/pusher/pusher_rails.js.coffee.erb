@@ -1,5 +1,18 @@
 $(document).ready ->
 
+  Pusher.host = '<%= Settings.pusher.wss_host %>'
+  Pusher.ws_port = <%= Settings.pusher.wss_port.to_s %>
+  Pusher.wss_port = <%= Settings.pusher.wss_port.to_s %>
+  # SockJS fallback parameters. We don't have such feature, so force all params to undefined
+  Pusher.sockjs_host = undefined
+  Pusher.sockjs_http_port = undefined
+  Pusher.sockjs_https_port = undefined
+  Pusher.sockjs_path = undefined
+#  # Stats. We don't have such feature, so force all params to undefined
+#  Pusher.stats_host = undefined
+#  Pusher.cdn_http = undefined
+#  Pusher.cdn_https = undefined
+
   pusher = new Pusher("<%= Settings.pusher.app_key %>")
   channel = pusher.subscribe("comments_channel")
   channel.bind "comment_event", (data) ->

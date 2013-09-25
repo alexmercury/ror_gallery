@@ -3,3 +3,4 @@
 #= require likes
 #= require categories
 #= require pusher/pusher_rails
+#= require pusher
