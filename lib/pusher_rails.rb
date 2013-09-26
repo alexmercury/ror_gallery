@@ -2,7 +2,7 @@ module PusherRails
 
   extend self
 
-  def self.initialize(pusher)
+  def self.initializer(pusher)
     @pusher = pusher
   end
 
