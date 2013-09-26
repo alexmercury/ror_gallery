@@ -1,19 +1,22 @@
-$(document).ready ->
+(->
+  class PusherRails
+    pusher: null
+    channel: null
+    channelBind: null
 
-  Pusher.host = '<%= Settings.pusher.wss_host %>'
-  Pusher.ws_port = <%= Settings.pusher.wss_port.to_s %>
-  Pusher.wss_port = <%= Settings.pusher.wss_port.to_s %>
-  # SockJS fallback parameters. We don't have such feature, so force all params to undefined
-  Pusher.sockjs_host = undefined
-  Pusher.sockjs_http_port = undefined
-  Pusher.sockjs_https_port = undefined
-  Pusher.sockjs_path = undefined
-#  # Stats. We don't have such feature, so force all params to undefined
-#  Pusher.stats_host = undefined
-#  Pusher.cdn_http = undefined
-#  Pusher.cdn_https = undefined
+    constructor: (channelString) ->
+      Pusher.host = '<%= Settings.pusher.wss_host %>'
+      Pusher.ws_port = <%= Settings.pusher.wss_port.to_s %>
+      Pusher.wss_port = <%= Settings.pusher.wss_port.to_s %>
+      Pusher.sockjs_host = undefined
+      Pusher.sockjs_http_port = undefined
+      Pusher.sockjs_https_port = undefined
+      Pusher.sockjs_path = undefined
 
-  pusher = new Pusher("<%= Settings.pusher.app_key %>")
-  channel = pusher.subscribe("comments_channel")
-  channel.bind "comment_event", (data) ->
-    alert data.user_name + "\n" + data.comment.description
+      @pusher = new Pusher("<%= Settings.pusher.app_key %>")
+      @channel = channelString
+
+      @channelBind = @pusher.subscribe(@channel)
+
+  window.PusherRails = PusherRails
+)()
