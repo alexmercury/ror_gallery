@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: 3557b78feb5fa2624efce065ff77dd4775a8256f
+  specs:
+    simple_captcha (0.1.5)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 7bf50e12848fbe7d70a013405425940303bb4112
   specs:
@@ -278,5 +284,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   selenium-webdriver (~> 2.35.1)
   shoulda-matchers
+  simple_captcha!
   simplecov
   uglifier (>= 1.0.3)
