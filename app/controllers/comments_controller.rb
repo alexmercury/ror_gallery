@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
                       kind_id: comment.id
                      })
 
-      PusherRails::Base.comment_add({user_name: current_user.name, comment: comment})
+      PusherRails.comment_add({user_name: current_user.name, comment: comment})
 
       redirect_to :back
     else
