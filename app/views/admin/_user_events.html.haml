@@ -1,0 +1,56 @@
+.main_content_wrapper
+  - if @users
+    .index_as_table
+      %table.index_table.index{border: 0, cellpadding: 0, cellspacing: 0}
+        %thead
+          %tr
+            %th
+              User email
+            %th
+              navigation
+            %th
+              user sign out
+            %th
+              user sign in
+            %th
+              likes
+            %th
+              subscribe
+            %th
+              comments
+            %th
+        %tbody
+          - @users.each_with_index do |user, index|
+            %tr{class: "#{index%2 == 0 ? 'odd' : 'even'}"}
+              %td
+                = user.email
+              %td
+                = link_to 'navigation', admin_navigation_events_path(user_id: user.id)
+              %td
+                = link_to 'user sign out',  admin_events_path(user_id: user.id, event_type: 'sign_out')
+              %td
+                = link_to 'user sign in', admin_events_path(user_id: user.id, event_type: 'sign_in')
+              %td
+                = link_to 'like/dislike', admin_events_path(user_id: user.id, event_type: ['like','dislike'])
+              %td
+                = link_to 'subscribe/unsubscribe', admin_events_path(user_id: user.id, event_type: ['subscribe','unsubscribe'])
+              %td
+                = link_to 'comments', admin_events_path(user_id: user.id, event_type: 'comment')
+              %td
+                %button{id: 'close_row'} ×
+    -## #index_footer
+      %nav.pagination
+        %span.page.current
+          1
+        %span.page
+          %a{:href => "/admin/pictures?order=id_desc&amp;page=2", :rel => "next"} 2
+        %span.next
+          %a{:href => "/admin/pictures?order=id_desc&amp;page=2", :rel => "next"} Next ›
+        %span.last
+          %a{:href => "/admin/pictures?order=id_desc&amp;page=2"} Last »
+      .pagination_information
+        Displaying Pictures
+        %b 1&nbsp;-&nbsp;30
+        of
+        %b 50
+        in total
