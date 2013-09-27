@@ -1,7 +1,5 @@
 ActiveAdmin.register Event do
 
-  menu parent: 'User Events'
-
   index title: proc{params[:user_id].blank? ? 'Events' : "#{(User.find(params[:user_id])).email.to_s} -> #{params[:event_type]}"}  do
     selectable_column
     column :user_id
@@ -10,7 +8,6 @@ ActiveAdmin.register Event do
     column :created_at
     default_actions
   end
-
 
   controller do
 

@@ -27,7 +27,7 @@ ActiveAdmin.register_page 'Parser' do
 
         @categories = Category.all
 
-        render 'admin/perform'
+        render 'admin/parser/perform'
 
       rescue
         redirect_to :back, alert: "Can't connect to the server or invalid url"
@@ -60,7 +60,7 @@ ActiveAdmin.register_page 'Parser' do
 
     panel 'Parse site' do
       div do
-         render partial: 'admin/image_parse_form'
+         render partial: 'admin/parser/image_parse_form'
       end
     end
 
