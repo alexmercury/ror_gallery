@@ -2,7 +2,7 @@
   %h1= @picture.title
   %div
     %div= "Comments (#{@picture.comments_count})"
-    = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid', width: 128
+    = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
   %div.btn-group
     %span.btn.btn-inverse.disabled
       = "likes count (#{@picture.likes_count})"

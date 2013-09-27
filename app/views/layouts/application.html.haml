@@ -9,14 +9,26 @@
   %body
     .container
       .content-wrapper
-        %header.well.well-small
-          %span
-            = link_to 'Home', root_path, class: 'btn'
-          %span
-            = link_to 'Categories', categories_path, class: 'btn'
-          %span
-            = link_to 'Picture', pictures_path, class: 'btn'
-          = render partial: 'shared/user_modal'
+        %header.well.well-small.well-inverse
+
+          %ul.nav.nav-pills.nav-inverse.pull-left
+            %li.active
+              = link_to 'Home', root_path
+            %li
+              = link_to 'Categories', categories_path
+            %li
+              = link_to 'Picture', pictures_path
+          - unless 'registrations passwords sessions'.include? controller.controller_name
+            %ul.nav.nav-pills.nav-inverse.pull-right
+              %li
+                = link_to '#userModal', data:{toggle: 'modal'}, role: 'button' do
+                  %i.icon-user.icon-white
+                  - if user_signed_in?
+                    = current_user.name
+                    - render partial: 'shared/user_modal'
+                  - else
+                    login
+                    - render partial: 'shared/user_login'
         .content
           - if flash[:notice]
             %p.alert.alert-success
@@ -29,5 +41,5 @@
           = yield
       #modal_content
         = yield :modal_content
-      %footer.well.text-center
+      %footer.well.text-center.well-inverse
         = "RoR Mercury © #{DateTime.now.strftime('%Y')}"
