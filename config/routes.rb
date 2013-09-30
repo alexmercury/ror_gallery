@@ -9,6 +9,7 @@ Tit::Application.routes.draw do
 
   get 'pictures' => 'pictures#index', as: :pictures
   get 'categories/:title/:id' => 'pictures#show', as: :picture
+  post 'load_comments' => 'pictures#load_comments'
 
   post 'comment'=> 'comments#create', as: :comment_create
 

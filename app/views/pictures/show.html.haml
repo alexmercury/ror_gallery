@@ -1,28 +1,30 @@
 .container
-  %h1= @picture.title
-  %div
-    %div= "Comments (#{@picture.comments_count})"
-    = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
-  %div.btn-group
-    %span.btn.btn-inverse.disabled
-      = "likes count (#{@picture.likes_count})"
-    - if @picture.users.include? current_user
-      %a.btn.btn-inverse#dislike
-        %i.icon-thumbs-down.icon-white
-    - else
-      %a.btn.btn-inverse#like
-        %i.icon-thumbs-up.icon-white
-  - @picture.users.each do |user|
-    %div= user.name
-  %div
-    = paginate @comments
-    - @comments.reverse.each do |comment|
-      .well
-        %span= comment.user.name
-        %span= comment.description
-        %span= comment.created_at
-  .well
+  %h2= @picture.title
+  .picture-show-wrapper
+    .picture-show-container
+      .picture-comments-container
+        - @comments.each do |comment|
+          %div
+            %span.label= comment.user.name
+            = comment.created_at
+            .well.well-small
+              = comment.description
+        %button.btn{id: 'load_comment', pages:"#{@comments.total_pages}"}
+          load comment ...
+      .picture-show-td
+        = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
+        %div.btn-group
+          %span.btn.btn-inverse.disabled
+            = "likes count (#{@picture.likes_count})"
+          - if @picture.users.include? current_user
+            %a.btn.btn-inverse#dislike
+              %i.icon-thumbs-down.icon-white
+          - else
+            %a.btn.btn-inverse#like
+              %i.icon-thumbs-up.icon-white
+        %div= "Comments (#{@picture.comments_count})"
     = form_for @picture.comments.build, :url => comment_create_path do  |f|
-      = f.hidden_field :picture_id
-      = f.text_area :description, rows: 3, placeholder: 'Comment text...'
-      = f.submit 'add comment'
+      .input-append
+        = f.hidden_field :picture_id
+        = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge'
+        = f.submit 'add comment', class: 'btn'
