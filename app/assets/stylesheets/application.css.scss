@@ -1,6 +1,7 @@
 //= require image_slider
 //= require bootstrap
 //= require captcha
+//= require pictures
 
 .content {
   margin: 0px;
@@ -46,9 +47,15 @@ html, body, .container {
   color: #ffffff;
 }
 
+#userModal {
+  width: 280px;
+  margin-left: -140px;
+}
+
 footer {
   display: block;
-  height: 50px;
-  margin: -90px 0 0 0;
+  //height: 40px;
+  margin: -61px 0 0 0;
   color: #ffffff;
+  border: 2px solid #008080;
 }
