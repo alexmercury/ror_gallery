@@ -13,16 +13,17 @@
             .well.well-small
               = comment.description
       .picture-show-td
-        = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
-        %div.btn-group
-          %span.btn.btn-inverse.disabled
-            = "likes count (#{@picture.likes_count})"
+        .picture-like-button
           - if @picture.users.include? current_user
-            %a.btn.btn-inverse#dislike
+            %a.btn.btn-danger#dislike
               %i.icon-thumbs-down.icon-white
           - else
-            %a.btn.btn-inverse#like
+            %a.btn.btn-info#like
               %i.icon-thumbs-up.icon-white
+        .picture-like
+          %i.icon-thumbs-up.icon-white
+          %span#likes_count= "#{@picture.likes_count}"
+        = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
         %div= "Comments (#{@picture.comments_count})"
     = form_for @picture.comments.build, :url => comment_create_path do  |f|
       .input-append

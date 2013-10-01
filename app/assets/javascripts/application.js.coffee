@@ -1,11 +1,12 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
-#= require likes
-#= require categories
-#= require pictures
 #= require jquery.easing.1.3
 #= require jquery.roundabout-1.0.min
+#= require pictures
+#= require likes
+#= require comments
+#= require categories
 
 Date::toUTCFormat = (format) ->
   f =
