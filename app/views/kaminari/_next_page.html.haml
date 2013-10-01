@@ -1,7 +1,2 @@
-- unless current_page.last?
-  %li
-    = link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, rel: 'prev', remote: remote
-- else
-  %li.disabled
-    %span
-      = raw(t 'views.pagination.next')
+%span.next
+  = link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, rel: 'next', remote: remote

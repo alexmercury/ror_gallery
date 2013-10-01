@@ -1,7 +1,2 @@
-- unless current_page.first?
-  %li
-    = link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, remote: remote
-- else
-  %li.disabled
-    %span
-      = raw(t 'views.pagination.first')
+%span.first
+  = link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, remote: remote
