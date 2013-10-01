@@ -17,7 +17,7 @@
 
 .picture-comments-container {
   float: right;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 0 10px;
   text-align: left;
   width: 400px;
@@ -25,4 +25,8 @@
 
 .picture-show-td img {
   width: 95%;
+}
+
+.label-right {
+  float: right;
 }

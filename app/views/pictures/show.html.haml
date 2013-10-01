@@ -3,14 +3,14 @@
   .picture-show-wrapper
     .picture-show-container
       .picture-comments-container
-        - @comments.each do |comment|
+        %button.btn{id: 'load_comment', pages:"#{@comments.total_pages}"}
+          load prev comment ...
+        - @comments.reverse.each do |comment|
           %div
-            %span.label= comment.user.name
-            = comment.created_at
+            %span.label.label-inverse= comment.user.name
+            %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
             .well.well-small
               = comment.description
-        %button.btn{id: 'load_comment', pages:"#{@comments.total_pages}"}
-          load comment ...
       .picture-show-td
         = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
         %div.btn-group
