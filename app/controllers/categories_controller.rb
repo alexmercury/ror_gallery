@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+  before_filter :authenticate_user!, only: [:subscribe, :unsubscribe]
+
   def index
     @categories = Category.includes(:users)
   end
