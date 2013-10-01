@@ -17,7 +17,7 @@ getImgSize = (imgSrc, element) ->
 current_page = 1
 
 commentLoadHtml = (comment) ->
-  div = '<div>'\
+  div = '<div class="load-comment" style="display: none;">'\
   + '<span class="label label-inverse">'+comment.user.name+'</span>'\
   + '<span class="label label-info label-right">'\
   + new Date(comment.created_at).toUTCFormat('%m-%d-%y at %H:%M')+'</span>'\
@@ -47,5 +47,6 @@ $(document).ready ->
         if data
           $.each data, (key, value) ->
             $(commentLoadHtml(data[key])).insertAfter $("#load_comment")
+            $(".picture-comments-container .load-comment").slideDown "slow"
         if current_page == pages
           $("#load_comment").remove()

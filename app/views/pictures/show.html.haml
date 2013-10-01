@@ -3,8 +3,9 @@
   .picture-show-wrapper
     .picture-show-container
       .picture-comments-container
-        %button.btn{id: 'load_comment', pages:"#{@comments.total_pages}"}
-          load prev comment ...
+        - if @comments.total_pages > 1
+          %button.btn.btn-info.btn-block#load_comment{pages:"#{@comments.total_pages}"}
+            Load 5 prev comments ...
         - @comments.reverse.each do |comment|
           %div
             %span.label.label-inverse= comment.user.name
@@ -26,5 +27,5 @@
     = form_for @picture.comments.build, :url => comment_create_path do  |f|
       .input-append
         = f.hidden_field :picture_id
-        = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge'
+        = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge', autofocus: true
         = f.submit 'add comment', class: 'btn'
