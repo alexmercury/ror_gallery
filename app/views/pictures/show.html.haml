@@ -3,15 +3,16 @@
   .picture-show-wrapper
     .picture-show-container
       .picture-comments-container
-        - if @comments.total_pages > 1
-          %button.btn.btn-info.btn-block#load_comment{pages:"#{@comments.total_pages}"}
-            Load 5 prev comments ...
-        - @comments.reverse.each do |comment|
-          %div
-            %span.label.label-inverse= comment.user.name
-            %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
-            .well.well-small
-              = comment.description
+        .comments-container
+          - if @comments.total_pages > 1
+            %button.btn.btn-info.btn-block#load_comment{pages:"#{@comments.total_pages}"}
+              Load 5 prev comments ...
+          - @comments.reverse.each do |comment|
+            .comment-div
+              %span.label.label-inverse= comment.user.name
+              %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
+              .well.well-small
+                = comment.description
       .picture-show-td
         .picture-like-button
           - if @picture.users.include? current_user
@@ -25,8 +26,8 @@
           %span#likes_count= "#{@picture.likes_count}"
         = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
         %div= "Comments (#{@picture.comments_count})"
-    = form_for @picture.comments.build, :url => comment_create_path do  |f|
+    = form_for @picture.comments.build, url: comment_create_path, method: :post, remote: true do  |f|
       .input-append
         = f.hidden_field :picture_id
         = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge', autofocus: true
-        = f.submit 'add comment', class: 'btn'
+        = f.submit 'add comment', class: 'btn btn-info'

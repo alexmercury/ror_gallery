@@ -12,10 +12,9 @@ class CommentsController < ApplicationController
                       kind: 'comment',
                       kind_id: comment.id
                      })
-
-      redirect_to :back
+      render json: comment.to_json(include:{user:{only: :name}})
     else
-      redirect_to :back, alert: comment.errors.full_messages.join(', ')
+      render json: {error: comment.errors.full_messages.join(', ')}
     end
 
   end
