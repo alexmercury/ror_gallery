@@ -29,6 +29,7 @@ $(document).ready ->
       alert data.error
     else
       $("#comment_description").val('')
+      $('#comments_count').text(parseInt($('#comments_count').text()) + 1)
       $(".picture-comments-container .comments-container").append commentHtml(data)
       $(".picture-comments-container .comments-container .load-comment").show ->
         $(".picture-comments-container").scrollTop $(".comments-container").height()
