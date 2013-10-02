@@ -1,0 +1,28 @@
+.main_content_wrapper
+  .index_as_table
+    %table.index_table.index{border: 0, cellpadding: 0, cellspacing: 0}
+      - unless @event.blank?
+        %thead
+          %tr
+            %th
+              User
+            %th
+              Action
+            %th
+              time
+            %th
+              date
+        %tbody
+          - @event.each do |nav|
+            %tr
+              %td
+                = nav.user.email
+              %td
+                = nav.kind
+              %td
+                = nav.created_at.strftime('%H:%m')
+              %td
+                = nav.created_at.strftime('%d/%m/%Y')
+  #index_footer
+    %nav.pagination
+      = paginate @event, window: 3

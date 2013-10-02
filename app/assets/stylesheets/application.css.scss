@@ -1,6 +1,61 @@
+//= require image_slider
 //= require bootstrap
 //= require captcha
+//= require pictures
 
 .content {
-  margin-top: 55px;
+  margin: 0px;
+}
+
+html, body, .container {
+  height: 100%;
+}
+
+.content-wrapper {
+  min-height: 100%;
+}
+
+.content-wrapper:after {
+  height: 90px;
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.well-inverse {
+  background-color: #333333;
+  padding-bottom: 20px;
+  //border: 1px solid #555555;
+}
+
+.nav-inverse li a:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.nav-inverse li a {
+  color: #C5C5C5;
+}
+
+.nav-inverse li.active a {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.nav-inverse li.active a:hover {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+#userModal {
+  width: 280px;
+  margin-left: -140px;
+}
+
+footer {
+  display: block;
+  //height: 40px;
+  margin: -61px 0 0 0;
+  color: #ffffff;
+  border: 2px solid #008080;
 }

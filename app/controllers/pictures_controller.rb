@@ -13,4 +13,9 @@ class PicturesController < ApplicationController
     end
   end
 
+  def load_comments
+    comments = Comment.includes(:user).where('picture_id = :id', id: params[:id]).order('created_at DESC').page(params[:page])
+    render json: comments.to_json(include:{user:{only: :name}})
+  end
+
 end
