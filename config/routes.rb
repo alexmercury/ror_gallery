@@ -29,6 +29,8 @@ Tit::Application.routes.draw do
   get 'categories'=> 'categories#index', as: :categories
   get 'categories/:title' => 'categories#show', as: :category
 
+  post '/pusher/auth'
+
   mount Resque::Server, :at => '/resque'
 
 end

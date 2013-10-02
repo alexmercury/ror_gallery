@@ -5,6 +5,8 @@
 #= require jquery.roundabout-1.0.min
 #= require pictures
 #= require likes
+#= require pusher
+#= require pusher/pusher_rails
 #= require comments
 #= require categories
 

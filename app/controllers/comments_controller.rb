@@ -12,6 +12,9 @@ class CommentsController < ApplicationController
                       kind: 'comment',
                       kind_id: comment.id
                      })
+
+      PusherRails.comment_add({comment: comment, user_name: current_user.name})
+
       render json: comment.to_json(include:{user:{only: :name}})
     else
       render json: {error: comment.errors.full_messages.join(', ')}

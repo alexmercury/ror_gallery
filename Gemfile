@@ -5,6 +5,7 @@ gem 'puma', '~> 2.5.1'
 gem 'pg'
 gem 'resque', :require => 'resque/server'
 
+gem 'pusher'
 
 gem 'kaminari', '~> 0.14.1'
 
