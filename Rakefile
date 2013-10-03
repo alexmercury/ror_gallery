@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Tit::Application.load_tasks
+RorGallery::Application.load_tasks

@@ -1,4 +1,4 @@
-Tit::Application.routes.draw do
+RorGallery::Application.routes.draw do
 
   root :to => 'pictures#index'
 
