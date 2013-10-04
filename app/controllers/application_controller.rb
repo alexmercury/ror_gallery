@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   after_filter :event_user
+  before_filter :get_locale
+
+  def set_locale
+    session[:locale] = params[:locale].to_s
+    redirect_to :back
+  end
 
   private
   # For gem 'devise' (after 'login/logout' path)
@@ -42,6 +48,14 @@ class ApplicationController < ActionController::Base
                         created_at: DateTime.now
                        })
       end
+    end
+  end
+
+  def get_locale
+    if session[:locale].blank?
+      I18n.locale = :en
+    else
+      I18n.locale = session[:locale].to_s
     end
   end
 
