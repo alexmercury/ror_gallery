@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!, only: [:subscribe, :unsubscribe]
 
   def index
-    @categories = Category.includes(:users)
+    @categories = Category.includes(:users).order('created_at DESC')
   end
 
   def show

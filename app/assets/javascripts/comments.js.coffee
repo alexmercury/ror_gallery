@@ -15,7 +15,7 @@ $(document).ready ->
     current_page += 1
     pages = parseInt($(this).attr 'pages')
     if current_page <= pages
-      comments_load = $.post "/load_comments",  {id: $('#comment_picture_id').attr('value'), page: current_page}
+      comments_load = $.post "/load_comments",  {id: $(this).attr('picture_id'), page: current_page}
       comments_load.done (data) ->
         if data
           $.each data, (key, value) ->
