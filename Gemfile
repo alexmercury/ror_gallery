@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'puma', '~> 2.5.1'
 gem 'pg'
-gem 'resque', :require => 'resque/server'
+gem 'resque', require: 'resque/server'
+gem 'resque-scheduler', require: 'resque_scheduler'
 
 gem 'pusher'
 
@@ -18,9 +19,9 @@ gem 'devise', '~> 3.0.3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'simple_captcha', git: 'git://github.com/galetahub/simple-captcha.git'
 
 gem 'jquery-rails', '~> 2.3.0'
 
