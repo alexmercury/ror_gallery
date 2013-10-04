@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def create
     comment = current_user.comments.new(params[:comment])
 
@@ -11,11 +13,11 @@ class CommentsController < ApplicationController
                       kind_id: comment.id
                      })
 
-      PusherRails::Base.comment_add({user_name: current_user.name, comment: comment})
+      PusherRails.comment_add({comment: comment, user_name: current_user.name})
 
-      redirect_to :back
+      render json: comment.to_json(include:{user:{only: :name}})
     else
-      redirect_to :back, alert: comment.errors.full_messages.join(', ')
+      render json: {error: comment.errors.full_messages.join(', ')}
     end
 
   end

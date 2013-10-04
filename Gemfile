@@ -9,6 +9,8 @@ gem 'pusher'
 
 gem 'kaminari', '~> 0.14.1'
 
+gem 'nokogiri', '~> 1.6.0'
+
 gem 'haml', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 

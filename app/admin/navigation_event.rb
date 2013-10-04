@@ -1,14 +1,11 @@
 ActiveAdmin.register NavigationEvent do
 
-  menu parent: 'User Events'
-
   index title: proc{params[:user_id].blank? ? 'Navigation' : "#{(User.find(params[:user_id])).email.to_s} -> navigation"} do
     selectable_column
     column :url
     column :created_at
     default_actions
   end
-
 
   controller do
 
@@ -20,9 +17,6 @@ ActiveAdmin.register NavigationEvent do
       end
     end
 
-
   end
-
-
 
 end

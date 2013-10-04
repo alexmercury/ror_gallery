@@ -1,0 +1,40 @@
+.main_content_wrapper
+  - if @users
+    .index_as_table
+      %table.index_table.index{border: 0, cellpadding: 0, cellspacing: 0}
+        %thead
+          %tr
+            %th
+              User email
+            %th
+              navigation
+            %th
+              user sign out
+            %th
+              user sign in
+            %th
+              likes
+            %th
+              subscribe
+            %th
+              comments
+        %tbody
+          - @users.each_with_index do |user, index|
+            %tr{class: "#{index%2 == 0 ? 'odd' : 'even'}"}
+              %td
+                = user.email
+              %td
+                = link_to 'navigation', admin_event_user_navigation_path(user.id)
+              %td
+                = link_to 'user sign in', admin_event_user_sign_in_path(user.id)
+              %td
+                = link_to 'user sign out', admin_event_user_sign_out_path(user.id)
+              %td
+                = link_to 'like/dislike', admin_event_like_path(user.id)
+              %td
+                = link_to 'subscribe/unsubscribe', admin_event_subscribe_path(user.id)
+              %td
+                = link_to 'comments', admin_event_comments_path(user.id)
+    #index_footer
+      %nav.pagination
+        = paginate @users, window: 2

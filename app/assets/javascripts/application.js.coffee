@@ -1,12 +1,24 @@
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap
+#= require jquery.easing.1.3
+#= require jquery.roundabout-1.0.min
+#= require pictures
 #= require likes
-#= require categories
 #= require pusher
 #= require pusher/pusher_rails
+#= require comments
+#= require categories
 
-$(document).ready ->
+Date::toUTCFormat = (format) ->
+  f =
+    y: @getYear() + 1900
+    m: @getUTCMonth() + 1
+    d: @getUTCDate()
+    H: @getUTCHours()
+    M: @getUTCMinutes()
+    S: @getUTCSeconds()
 
-  pusher = new PusherRails("comments_channel")
-  pusher.channelBind.bind "comment_event", (data) ->
-    alert data.user_name + "\n" + data.comment.description
+  for k of f
+    format = format.replace("%" + k, (if f[k] < 10 then "0" + f[k] else f[k]))
+  format
