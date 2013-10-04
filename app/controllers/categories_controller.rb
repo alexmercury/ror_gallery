@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+  before_filter :authenticate_user!, only: [:subscribe, :unsubscribe]
+
   def index
     @categories = Category.includes(:users)
   end
@@ -12,6 +14,13 @@ class CategoriesController < ApplicationController
   def subscribe
     category_subscribe = current_user.category_subscriptions.new(category_id: params[:category_id])
     if category_subscribe.save
+
+      Resque.enqueue(UserEvents,
+                     {user_id: current_user.id,
+                      kind: 'subscribe',
+                      kind_id: category_subscribe.id
+                     })
+
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
       end
@@ -28,6 +37,13 @@ class CategoriesController < ApplicationController
     category_subscribe = CategorySubscription.where('user_id = :user_id AND category_id = :category_id', user_id: current_user.id, category_id: params[:category_id]).first
 
     if category_subscribe.destroy
+
+      Resque.enqueue(UserEvents,
+                     {user_id: current_user.id,
+                      kind: 'unsubscribe',
+                      kind_id: category_subscribe.id
+                     })
+
       respond_to do |format|
         format.js{render js:"window.location.reload();"}
       end

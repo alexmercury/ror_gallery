@@ -5,8 +5,11 @@ gem 'puma', '~> 2.5.1'
 gem 'pg'
 gem 'resque', :require => 'resque/server'
 
+gem 'pusher'
 
 gem 'kaminari', '~> 0.14.1'
+
+gem 'nokogiri', '~> 1.6.0'
 
 gem 'haml', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
@@ -16,6 +19,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
 gem 'jquery-rails', '~> 2.3.0'
 

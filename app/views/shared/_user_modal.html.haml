@@ -1,0 +1,18 @@
+- content_for :modal_content do
+  #userModal.modal.hide.fade{aria:{hidden: 'true'}, aria:{labelledby: 'userModalLabel'}, role: 'dialog', tabindex: '-1'}
+    .modal-header
+      %button.close{aria:{hidden: 'true'}, data:{dismiss: 'modal'}, type: 'button'} ×
+      %h3#userModalLabel= current_user.name
+    .modal-body
+      = link_to 'Sign out', destroy_user_session_path, method:  :delete, confirm: 'You sure?'
+      %div
+        %span.badge.badge-inverse
+          %i.icon-comment.icon-white
+          = current_user.comments_count
+        %span.badge.badge-inverse
+          %i.icon-thumbs-up.icon-white
+          = current_user.likes_count
+      %div
+        = link_to 'Edit profile', edit_user_registration_path
+    .modal-footer
+      %button.btn{aria:{hidden: 'true'}, data:{dismiss: 'modal'}} Close

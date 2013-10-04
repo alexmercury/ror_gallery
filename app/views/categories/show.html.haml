@@ -6,8 +6,18 @@
     - else
       %h2 You not subscribe
   %div
-    = paginate @pictures
-    - @pictures.each do |picture|
-      %div
-        = link_to picture.image_file_name, picture_path( @category.title, picture.id)
-        = image_tag picture.image.url
+    = paginate @pictures, window: 2
+    #featured
+      %ul
+        - @pictures.each do |picture|
+          %li
+            = link_to picture_path( picture.category.title, picture.id) do
+              %span.bottom-label
+                %i.icon-thumbs-up
+                = picture.likes_count
+                %i.icon-comment
+                = picture.comments_count
+              = image_tag picture.image.url(:thumb), alt: picture.image_file_name
+            .reflection
+              = image_tag picture.image.url(:thumb), alt: 'slider-img'
+              .overlay
