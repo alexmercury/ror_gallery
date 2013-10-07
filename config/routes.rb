@@ -31,6 +31,8 @@ RorGallery::Application.routes.draw do
 
   post '/pusher/auth'
 
+  get '/localization/:locale' => 'application#set_locale', as: :localization
+
   mount Resque::Server, :at => '/resque'
 
 end
