@@ -4,19 +4,45 @@
     - @categories.each do |category|
       %li
         = link_to category_path(category.title), title: "Category: #{category.title}" do
-          = category.title.upcase
-          %span
-            %i.icon-picture
-            = category.pictures_count
-          %span
-            %i.icon-calendar
-            = category.updated_at
-          - if user_signed_in?
-            - if category.users.include? current_user
-              %span.btn.btn-inverse.unsubscribe{id: category.id}
-                %i.icon-eye-close.icon-white
-            - else
-              %span.btn.btn-inverse.subscribe{id: category.id}
-                %i.icon-eye-open.icon-white
+          %table{width: '100%'}
+            %tbody
+              %tr
+                %td{width: '10%'}
+                  - if user_signed_in?
+                    - if category.users.include? current_user
+                      %span.unsubscribe{id: category.id, title: 'unsubscribe'}
+                    - else
+                      %span.subscribe{id: category.id, title: 'subscribe'}
+                  - else
+                    %span.btn (you must login to subscribe)
+
+                %td{width: '20%'}
+                  = "#{category.title.upcase} (#{category.pictures_count} pictures)"
+                %td.sub{align: 'center'}
+                  -category.included_pictures.each do |pic|
+                    = image_tag pic.image.url(:default), alt: pic.image_file_name
+
+                %td{width: 128}
+                  - if category.users.include? current_user
+                    = image_tag 'subscribe.png', width: 128
+
+
+      -###
+        %span
+          %i.icon-picture
+          = category.pictures_count
+        %span
+          %i.icon-calendar
+          = category.updated_at
+        - if user_signed_in?
+          - if category.users.include? current_user
+            %span.btn.btn-inverse.unsubscribe{id: category.id}
+              %i.icon-eye-close.icon-white
           - else
-            %span.btn (you must login to subscribe)
+            %span.btn.btn-inverse.subscribe{id: category.id}
+              %i.icon-eye-open.icon-white
+        - else
+          %span.btn (you must login to subscribe)
+          %span.subscribe-label
+            sub
+          -##= image_tag 'no_image.gif'
