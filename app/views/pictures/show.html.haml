@@ -14,13 +14,14 @@
               .well.well-small
                 = comment.description
       .picture-show-td
-        .picture-like-button
-          - if @picture.users.include? current_user
-            %a.btn.btn-danger#dislike
-              %i.icon-thumbs-down.icon-white
-          - else
-            %a.btn.btn-info#like
-              %i.icon-thumbs-up.icon-white
+        - if user_signed_in?
+          .picture-like-button
+            - if @picture.users.include? current_user
+              %a.btn.btn-danger#dislike
+                %i.icon-thumbs-down.icon-white
+            - else
+              %a.btn.btn-info#like
+                %i.icon-thumbs-up.icon-white
         .picture-like
           %i.icon-comment.icon-white
           %span#comments_count= "#{@picture.comments_count}"
