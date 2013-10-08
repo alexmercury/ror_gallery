@@ -1,22 +1,30 @@
-%h2 Sign up
+%h2= I18n.t('devise_views.registration.new.title')
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
-  %div
-    = f.label :name
-    %br
-    = f.text_field :name, autofocus: true
-  %div
-    = f.label :email
-    %br
-    = f.email_field :email
-  %div
-    = f.label :password
-    %br
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
+
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_email'}
+        %i.icon-user
+    = f.text_field :name, autofocus: true, placeholder: I18n.t('devise_views.registration.new.name_placeholder')
+  %br
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_email'}
+        %i.icon-envelope
+    = f.email_field :email, placeholder: I18n.t('devise_views.registration.new.email_placeholder')
+  %br
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_password'}
+        %i.icon-lock
+    = f.password_field :password, placeholder: I18n.t('devise_views.registration.new.password_placeholder')
+  %br
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_password'}
+        %i.icon-lock
+    = f.password_field :password_confirmation, placeholder: I18n.t('devise_views.registration.new.password_confirmation_placeholder')
   %div
     = show_simple_captcha
   %div= f.submit 'Sign up'

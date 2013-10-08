@@ -1,0 +1,5 @@
+ru:
+  devise_views:
+    registration:
+      new:
+        title: 'Регистрация'

@@ -1,0 +1,9 @@
+en:
+  devise_views:
+    registration:
+      new:
+        title: 'Sign up'
+        name_placeholder: 'Enter your name'
+        email_placeholder: 'Enter your email'
+        password_placeholder: 'Enter your password'
+        password_confirmation_placeholder: 'Confirm your password'

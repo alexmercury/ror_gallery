@@ -1,0 +1,11 @@
+ru:
+  views:
+      shared:
+        user_login:
+          title: 'Выполните вход'
+          email_placeholder: 'Введите свой email'
+          password_placeholder: 'Введите свой пароль'
+          remember_me: 'Запомнить меня'
+          login: 'Войти'
+          facebook_login: 'Войти через <b>facebook</b>'
+          register: 'Регистрация'

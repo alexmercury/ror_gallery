@@ -5,6 +5,7 @@ en:
       home: 'Home'
       categories: 'Categories'
       pictures: 'Pictures'
+      login: 'Login'
 
   views:
     pagination:
