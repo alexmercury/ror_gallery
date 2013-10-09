@@ -9,3 +9,7 @@ en:
         login: 'Login'
         facebook_login: 'Login with <b>facebook</b>'
         register: 'Register'
+    categories:
+      index:
+        page_title: 'Ror Gallery | Categories'
+        title: 'Categories'

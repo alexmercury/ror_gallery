@@ -36,9 +36,6 @@ RorGallery::Application.routes.draw do
     end
   end
 
-
-
-
   # POST method for ajax
   post 'load_comments' => 'pictures#load_comments'
   post 'comment'=> 'comments#create', as: :comment_create
