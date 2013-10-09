@@ -21,9 +21,7 @@ class CategoriesController < ApplicationController
                       kind_id: category_subscribe.id
                      })
 
-      respond_to do |format|
-        format.js{render js:"window.location.reload();"}
-      end
+      render nothing: true
     else
       respond_to do |format|
         format.js{render js:"alert('Error');"}
@@ -44,9 +42,7 @@ class CategoriesController < ApplicationController
                       kind_id: category_subscribe.id
                      })
 
-      respond_to do |format|
-        format.js{render js:"window.location.reload();"}
-      end
+      render nothing: true
     else
       respond_to do |format|
         format.js{render js:"alert('Error');"}
