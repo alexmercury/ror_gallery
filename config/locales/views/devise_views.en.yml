@@ -2,8 +2,14 @@ en:
   devise_views:
     registration:
       new:
-        title: 'Sign up'
+        title: 'Registration'
         name_placeholder: 'Enter your name'
         email_placeholder: 'Enter your email'
         password_placeholder: 'Enter your password'
         password_confirmation_placeholder: 'Confirm your password'
+        submit: 'Sign up'
+    shared_links:
+      sign_in: 'Sign in'
+      sign_up: 'Sign up'
+      pass_change: 'Forgot your password?'
+      sign_in_with: 'Sign in with <b>%{provider}</b>'

@@ -5,7 +5,7 @@
       %h3#userModalLabel
         = I18n.t('views.shared.user_login.title')
     .modal-body
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = form_for(resource, as: resource_name, url: (default_locale? ? user_session_path : locale_user_session_path)) do |f|
         .input-prepend
           %span.add-on
             %label.control-label{for: 'user_email'}

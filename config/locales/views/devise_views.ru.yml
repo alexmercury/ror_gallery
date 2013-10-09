@@ -3,3 +3,13 @@ ru:
     registration:
       new:
         title: 'Регистрация'
+        name_placeholder: 'Введите ваше имя'
+        email_placeholder: 'Введите ваш email'
+        password_placeholder: 'Введите ваш пароль'
+        password_confirmation_placeholder: 'Подтвердите пароль'
+        submit: 'Регистрация'
+    shared_links:
+      sign_in: 'Войти'
+      sign_up: 'Регистрация'
+      pass_change: 'Забыли ваш пароль?'
+      sign_in_with: 'Войти через <b>%{provider}</b>'

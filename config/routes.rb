@@ -27,6 +27,7 @@ RorGallery::Application.routes.draw do
 
     as :user do
       get 'sign_up' => 'devise/registrations#new', :as => :locale_new_user_registration
+      post 'sign_up' => 'devise/registrations#create', :as => :locale_user_registration
       get 'signin' => 'devise/sessions#new', :as => :locale_new_user_session
       post 'signin' => 'devise/sessions#create', :as => :locale_user_session
       delete 'signout' => 'devise/sessions#destroy', :as => :locale_destroy_user_session
