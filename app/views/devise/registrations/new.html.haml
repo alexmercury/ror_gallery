@@ -1,32 +1,20 @@
 %h2= I18n.t('devise_views.registration.new.title')
-%div= devise_error_messages!
+%div
+  - unless devise_error_messages!.blank?
+    .alert.alert-error
+      %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+      = devise_error_messages!
 = form_for(resource, as: resource_name, url: (default_locale? ? user_registration_path : locale_user_registration_path)) do |f|
   %div
-    .input-prepend
-      %span.add-on
-        %label.control-label{for: 'user_email'}
-          %i.icon-user
-      = f.text_field :name, autofocus: true, placeholder: I18n.t('devise_views.registration.new.name_placeholder')
+    = f.text_field :name, autofocus: true, placeholder: I18n.t('devise_views.registration.new.name_placeholder')
   %div
-    .input-prepend
-      %span.add-on
-        %label.control-label{for: 'user_email'}
-          %i.icon-envelope
-      = f.email_field :email, placeholder: I18n.t('devise_views.registration.new.email_placeholder')
+    = f.email_field :email, placeholder: I18n.t('devise_views.registration.new.email_placeholder')
   %div
-    .input-prepend
-      %span.add-on
-        %label.control-label{for: 'user_password'}
-          %i.icon-lock
-      = f.password_field :password, placeholder: I18n.t('devise_views.registration.new.password_placeholder')
+    = f.password_field :password, placeholder: I18n.t('devise_views.registration.new.password_placeholder')
   %div
-    .input-prepend
-      %span.add-on
-        %label.control-label{for: 'user_password_confirmation'}
-          %i.icon-lock
-      = f.password_field :password_confirmation, placeholder: I18n.t('devise_views.registration.new.password_confirmation_placeholder')
+    = f.password_field :password_confirmation, placeholder: I18n.t('devise_views.registration.new.password_confirmation_placeholder')
   %div
-    =# show_simple_captcha
+    = show_simple_captcha(object: 'user')
   %div
     = f.submit I18n.t('devise_views.registration.new.submit')
 = render 'devise/shared/links'

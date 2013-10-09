@@ -1,0 +1,11 @@
+%h2= I18n.t('devise_views.passwords.new.title')
+%div
+  - unless devise_error_messages!.blank?
+    .alert.alert-error
+      %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+      = devise_error_messages!
+= form_for(resource, :as => resource_name, :url => (default_locale? ? user_password_path : locale_user_password_path), :html => { :method => :post }) do |f|
+  %div
+    = f.email_field :email, :autofocus => true, placeholder: I18n.t('devise_views.passwords.new.email_placeholder')
+  %div= f.submit I18n.t('devise_views.passwords.new.submit')
+= render "devise/shared/links"

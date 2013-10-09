@@ -26,8 +26,10 @@ RorGallery::Application.routes.draw do
     get 'categories/:title/:id' => 'pictures#show', as: :locale_picture
 
     as :user do
-      get 'sign_up' => 'devise/registrations#new', :as => :locale_new_user_registration
-      post 'sign_up' => 'devise/registrations#create', :as => :locale_user_registration
+      get 'registrations' => 'registrations#new', :as => :locale_new_user_registration
+      post 'registrations' => 'registrations#create', :as => :locale_user_registration
+      get 'passchange' => 'devise/passwords#new', :as => :locale_new_user_password
+      post 'passchange' => 'devise/passwords#create', :as => :locale_user_password
       get 'signin' => 'devise/sessions#new', :as => :locale_new_user_session
       post 'signin' => 'devise/sessions#create', :as => :locale_user_session
       delete 'signout' => 'devise/sessions#destroy', :as => :locale_destroy_user_session

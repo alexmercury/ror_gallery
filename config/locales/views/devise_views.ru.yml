@@ -13,3 +13,8 @@ ru:
       sign_up: 'Регистрация'
       pass_change: 'Забыли ваш пароль?'
       sign_in_with: 'Войти через <b>%{provider}</b>'
+    passwords:
+      new:
+        title: 'Забыли ваш пароль?'
+        email_placeholder: 'Введите ваш email'
+        submit: 'Отправить мне инструкцию для сброса пароля'

@@ -13,3 +13,8 @@ en:
       sign_up: 'Sign up'
       pass_change: 'Forgot your password?'
       sign_in_with: 'Sign in with <b>%{provider}</b>'
+    passwords:
+      new:
+        title: 'Forgot your password?'
+        email_placeholder: 'Enter your email'
+        submit: 'Send me reset password instructions'
