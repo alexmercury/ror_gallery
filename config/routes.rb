@@ -1,6 +1,6 @@
 RorGallery::Application.routes.draw do
 
-  root :to => 'pictures#index'
+  root :to => 'pictures#home'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -19,7 +19,7 @@ RorGallery::Application.routes.draw do
   get 'categories/:title/:id' => 'pictures#show', as: :picture
 
   scope '/:locale', locale: /en|ru/ do
-    get '/' => 'pictures#index', as: :locale_root
+    get '/' => 'pictures#home', as: :locale_root
     get 'pictures' => 'pictures#index', as: :locale_pictures
     get 'categories'=> 'categories#index', as: :locale_categories
     get 'categories/:title' => 'categories#show', as: :locale_category

@@ -11,11 +11,11 @@
         %header.well.well-small.well-inverse
 
           %ul.nav.nav-pills.nav-inverse.pull-left
-            %li
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'home' ) ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.home'), (default_locale? ? root_url : locale_root_url)
             %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.categories'), (default_locale? ? categories_url : locale_categories_url)
-            %li{class: "#{ controller.controller_name == 'pictures' ? 'active' : 'not-active'}"}
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.pictures'), (default_locale? ? pictures_url : locale_pictures_url)
           %ul.nav.nav-pills.nav-inverse.pull-right
             - unless 'registrations passwords sessions'.include? controller.controller_name
