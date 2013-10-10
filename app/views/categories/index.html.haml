@@ -15,7 +15,7 @@
                     - else
                       %span.subscribe{id: category.id, title: 'subscribe'}
                 %td{width: '20%'}
-                  = "#{category.title.upcase} (#{category.pictures_count})"
+                  = "#{category.title_locale(I18n.locale).blank? ? category.title : category.title_locale(I18n.locale)} (#{category.pictures_count})"
                 %td.sub{align: 'center'}
                   -category.included_pictures.each do |pic|
                     = image_tag pic.image.url(:default), alt: pic.image_file_name

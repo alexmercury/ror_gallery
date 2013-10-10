@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
 
-  attr_accessible :title
+  attr_accessible :title, :title_locale
+  translates :title_locale
 
   has_many :included_pictures, class_name: 'Picture', limit: 3, order: 'RANDOM()'
   has_many :pictures, dependent: :destroy
