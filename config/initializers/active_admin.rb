@@ -174,6 +174,15 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add :label => 'Locale', :priority => 100 do |sites|
+        sites.add label: 'RU', url: '?locale=ru'
+        sites.add label: 'EN', url: '?locale=en'
+      end
+    end
+  end
+
   # == Download Links
   #
   # You can disable download links on resource listing pages,
