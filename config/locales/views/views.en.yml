@@ -13,3 +13,6 @@ en:
       index:
         page_title: 'Ror Gallery | Categories'
         title: 'Categories'
+        link_title: 'Category: %{category}'
+        unsubscribe_title: 'unsubscribe'
+        subscribe_title: 'subscribe'

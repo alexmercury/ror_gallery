@@ -22,7 +22,6 @@ ActiveAdmin.register Category do
       f.input :title, as: :string
       f.input :title_locale, as: :string, hint: f.template.hidden_field_tag(:locale, params[:locale])
     end
-    I18n.locale = params[:locale]
     f.actions
   end
 

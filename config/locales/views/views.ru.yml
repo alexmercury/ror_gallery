@@ -13,3 +13,6 @@ ru:
       index:
         page_title: 'Ror Gallery | Категории'
         title: 'Категории'
+        link_title: 'Категория: %{category}'
+        unsubscribe_title: 'отписаться'
+        subscribe_title: 'подписаться'

@@ -10,4 +10,11 @@ class Category < ActiveRecord::Base
 
   validates :title, presence: true, length: {minimum: 1, maximum: 255}, uniqueness: true
 
+  def title_loc
+    if title_locale(I18n.locale).blank?
+      return title
+    end
+    return title_locale(I18n.locale)
+  end
+
 end
