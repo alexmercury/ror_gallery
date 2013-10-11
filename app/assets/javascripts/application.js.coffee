@@ -2,7 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require jquery.easing.1.3
-#= require jquery.roundabout-1.0.min
+#= require jquery.roundabout.min
 #= require pictures
 #= require likes
 #= require pusher
