@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Ror Gallery
+    %title= content_for?(:title) ? content_for(:title) : 'Ror Gallery'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -11,12 +11,12 @@
         %header.well.well-small.well-inverse
 
           %ul.nav.nav-pills.nav-inverse.pull-left
-            %li.active
-              = link_to 'Home', root_path
             %li
-              = link_to 'Categories', categories_path
-            %li
-              = link_to 'Picture', pictures_path
+              = link_to I18n.t('application.menu.home'), root_url
+            %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.categories'), categories_url
+            %li{class: "#{ controller.controller_name == 'pictures' ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.pictures'), pictures_url
           - unless 'registrations passwords sessions'.include? controller.controller_name
             %ul.nav.nav-pills.nav-inverse.pull-right
               %li
@@ -28,6 +28,15 @@
                   - else
                     login
                     - render partial: 'shared/user_login'
+              %li
+                - if session[:locale] == 'ru'
+                  = link_to localization_url(:en) do
+                    %i.flag.flag-en
+                    EN
+                - else
+                  = link_to localization_url(:ru) do
+                    %i.flag.flag-ru
+                    RU
         .content
           - if flash[:notice]
             %p.alert.alert-success
@@ -40,5 +49,4 @@
           = yield
       #modal_content
         = yield :modal_content
-      %footer.well.text-center.well-inverse
-        = "RoR Mercury © #{DateTime.now.strftime('%Y')}"
+      %footer.well.text-center.well-inverse= I18n.t('application.copyright', year: DateTime.now.strftime('%Y'))

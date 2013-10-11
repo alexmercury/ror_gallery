@@ -2,6 +2,7 @@
 //= require bootstrap
 //= require captcha
 //= require pictures
+//= require flags
 //= require categories
 
 .content {
@@ -32,6 +33,10 @@ html, body, .container {
 .nav-inverse li a:hover {
   background-color: #000000;
   color: #ffffff;
+}
+
+.nav-inverse li:hover {
+  cursor: pointer;
 }
 
 .nav-inverse li a {
