@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!, only: [:subscribe, :unsubscribe]
 
   def index
-    @categories = Category.includes(:users).order('created_at DESC')
+    @categories = Category.includes(:users, :translations)
   end
 
   def show
@@ -21,9 +21,7 @@ class CategoriesController < ApplicationController
                       kind_id: category_subscribe.id
                      })
 
-      respond_to do |format|
-        format.js{render js:"window.location.reload();"}
-      end
+      render nothing: true
     else
       respond_to do |format|
         format.js{render js:"alert('Error');"}
@@ -44,9 +42,7 @@ class CategoriesController < ApplicationController
                       kind_id: category_subscribe.id
                      })
 
-      respond_to do |format|
-        format.js{render js:"window.location.reload();"}
-      end
+      render nothing: true
     else
       respond_to do |format|
         format.js{render js:"alert('Error');"}

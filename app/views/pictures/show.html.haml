@@ -5,7 +5,7 @@
       .picture-comments-container
         .comments-container
           - if @comments.total_pages > 1
-            %button.btn.btn-info.btn-block#load_comment{pages: @comments.total_pages, picture_id: @picture.id}
+            %button.btn.btn-info.btn-block#load_comment{data:{pages:"#{@comments.total_pages}"}}
               Load 5 prev comments ...
           - @comments.reverse.each do |comment|
             .comment-div

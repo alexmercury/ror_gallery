@@ -1,3 +1,25 @@
-// Place all the styles related to the categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.subscribe {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: url(/assets/mail.png);
+}
+
+.subscribe:hover {
+  background-image: url(/assets/mail3.png);
+}
+
+.unsubscribe {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: url(/assets/mail2.png);
+}
+
+.unsubscribe:hover {
+  background-image: url(/assets/mail3.png);
+}
+
+.subscribe-image {
+  float: right;
+}

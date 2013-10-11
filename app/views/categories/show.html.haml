@@ -1,10 +1,9 @@
 .container
-  %h1= @category.title
   - if user_signed_in?
     - if @category.users.include? current_user
-      %h2 You subscribe
-    - else
-      %h2 You not subscribe
+      .subscribe-image
+        = image_tag 'subscribe.png', width: 128
+  %h1= @category.title_loc
   %div
     = paginate @pictures, window: 2
     #featured

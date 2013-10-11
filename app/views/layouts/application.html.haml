@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Ror Gallery
+    %title= content_for?(:title) ? content_for(:title) : 'Ror Gallery'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -11,14 +11,14 @@
         %header.well.well-small.well-inverse
 
           %ul.nav.nav-pills.nav-inverse.pull-left
-            %li.active
-              = link_to 'Home', root_path
-            %li
-              = link_to 'Categories', categories_path
-            %li
-              = link_to 'Picture', pictures_path
-          - unless 'registrations passwords sessions'.include? controller.controller_name
-            %ul.nav.nav-pills.nav-inverse.pull-right
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'home' ) ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.home'), (default_locale? ? root_url : locale_root_url)
+            %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.categories'), (default_locale? ? categories_url : locale_categories_url)
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.pictures'), (default_locale? ? pictures_url : locale_pictures_url)
+          %ul.nav.nav-pills.nav-inverse.pull-right
+            - unless 'registrations passwords sessions'.include? controller.controller_name
               %li
                 = link_to '#userModal', data:{toggle: 'modal'}, role: 'button' do
                   %i.icon-user.icon-white
@@ -26,8 +26,17 @@
                     = current_user.name
                     - render partial: 'shared/user_modal'
                   - else
-                    login
+                    = I18n.t('application.menu.login')
                     - render partial: 'shared/user_login'
+            %li
+              - if default_locale?
+                = link_to locale: :ru do
+                  %i.flag.flag-ru
+                  RU
+              - else
+                = link_to locale: :en do
+                  %i.flag.flag-en
+                  EN
         .content
           - if flash[:notice]
             %p.alert.alert-success
@@ -40,5 +49,4 @@
           = yield
       #modal_content
         = yield :modal_content
-      %footer.well.text-center.well-inverse
-        = "RoR Mercury © #{DateTime.now.strftime('%Y')}"
+      %footer.well.text-center.well-inverse= I18n.t('application.copyright', year: DateTime.now.strftime('%Y'))
