@@ -1,7 +1,9 @@
+# Config for resque and resque_scheduler
 require 'resque_scheduler'
 require 'resque_scheduler/server'
+require 'redis'
 
-Resque.redis = 'localhost:6379'
+Resque.redis = Redis.new(host: '0.0.0.0', port: 6379)
 
 # If you want to be able to dynamically change the schedule,
 # uncomment this line. A dynamic schedule can be updated via the
