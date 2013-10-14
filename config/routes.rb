@@ -18,6 +18,7 @@ RorGallery::Application.routes.draw do
     get 'categories'=> 'categories#index', as: :locale_categories
     get 'categories/:title' => 'categories#show', as: :locale_category
     get 'categories/:title/:id' => 'pictures#show', as: :locale_picture
+    get 'comments' => 'comments#index', as: :locale_comments
 
     devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations'}
   end

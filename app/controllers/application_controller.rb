@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
                       kind: 'sign_in',
                       kind_id: current_user.id
                      })
-      categories_path
+      locale_categories_path
     end
   end
 

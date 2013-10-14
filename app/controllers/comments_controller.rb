@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:create]
+
+  def index
+    @comments = Comment.includes(:user).order('created_at DESC')
+  end
 
   def create
     comment = current_user.comments.new(params[:comment])
