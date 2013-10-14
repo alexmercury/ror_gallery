@@ -5,7 +5,7 @@
       %h3#userModalLabel
         = I18n.t('views.shared.user_login.title')
     .modal-body
-      = form_for(resource, as: resource_name, url: (default_locale? ? user_session_path : locale_user_session_path)) do |f|
+      = form_for(resource, as: resource_name, url: user_session_path) do |f|
         .input-prepend
           %span.add-on
             %label.control-label{for: 'user_email'}
@@ -27,6 +27,6 @@
           = image_tag '/assets/facebook.png', width: 40
           = raw I18n.t('views.shared.user_login.facebook_login')
     .modal-footer
-      = link_to (default_locale? ? new_user_registration_url : locale_new_user_registration_url), class: 'btn' do
+      = link_to new_user_registration_url, class: 'btn' do
         %i.icon-pencil
         %span= I18n.t('views.shared.user_login.register')

@@ -12,8 +12,6 @@ RorGallery::Application.routes.draw do
   get '/admin/user_events/:user_id/subscribe' => 'admin/user_events#event_subscribe', as: :admin_event_subscribe
   get '/admin/user_events/:user_id/comments' => 'admin/user_events#event_comments', as: :admin_event_comments
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations'}
-
   scope '(:locale)', locale: /en|ru/ do
     get '/' => 'pictures#home', as: :locale_root
     get 'pictures' => 'pictures#index', as: :locale_pictures
@@ -21,15 +19,7 @@ RorGallery::Application.routes.draw do
     get 'categories/:title' => 'categories#show', as: :locale_category
     get 'categories/:title/:id' => 'pictures#show', as: :locale_picture
 
-    as :user do
-      get 'registrations' => 'registrations#new', :as => :locale_new_user_registration
-      post 'registrations' => 'registrations#create', :as => :locale_user_registration
-      get 'passchange' => 'devise/passwords#new', :as => :locale_new_user_password
-      post 'passchange' => 'devise/passwords#create', :as => :locale_user_password
-      get 'signin' => 'devise/sessions#new', :as => :locale_new_user_session
-      post 'signin' => 'devise/sessions#create', :as => :locale_user_session
-      delete 'signout' => 'devise/sessions#destroy', :as => :locale_destroy_user_session
-    end
+    devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations'}
   end
 
   # POST method for ajax
@@ -39,7 +29,6 @@ RorGallery::Application.routes.draw do
   post 'dislike' => 'likes#destroy'
   post 'subscribe' => 'categories#subscribe'
   post 'unsubscribe' => 'categories#unsubscribe'
-
   post '/pusher/auth'
 
   mount Resque::Server, :at => '/resque'
