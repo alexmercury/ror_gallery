@@ -14,7 +14,7 @@ class Picture < ActiveRecord::Base
   has_attached_file :image,
                     storage: :dropbox,
                     dropbox_credentials: Rails.root.join('config/dropbox.yml'),
-                    path: ':id__:style__:filename',
+                    path: 'ror_gallery/:id__:style__:filename',
                     default_url: 'no_image.gif',
                     styles: {thumb:'256x256>', default: '128x128>'}
 
