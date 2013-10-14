@@ -1,0 +1,18 @@
+en:
+  views:
+    shared:
+      user_login:
+        title: 'Log in'
+        email_placeholder: 'Enter your email'
+        password_placeholder: 'Enter your password'
+        remember_me: 'Remember me'
+        login: 'Login'
+        facebook_login: 'Login with <b>facebook</b>'
+        register: 'Register'
+    categories:
+      index:
+        page_title: 'Ror Gallery | Categories'
+        title: 'Categories'
+        link_title: 'Category: %{category}'
+        unsubscribe_title: 'unsubscribe'
+        subscribe_title: 'subscribe'

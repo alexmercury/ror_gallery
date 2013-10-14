@@ -4,12 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   after_filter :event_user
-  before_filter :get_locale
-
-  def set_locale
-    session[:locale] = params[:locale].to_s
-    redirect_to :back
-  end
+  before_filter :set_locale
 
   private
   # For gem 'devise' (after 'login/logout' path)
@@ -51,11 +46,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_locale
-    if session[:locale].blank?
-      I18n.locale = :en
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    if I18n.locale == I18n.default_locale
+      return {locale: nil}
     else
-      I18n.locale = session[:locale].to_s
+      return {locale: I18n.locale}
     end
   end
 
