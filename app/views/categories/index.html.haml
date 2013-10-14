@@ -18,7 +18,7 @@
                   = "#{category.title.upcase} (#{category.pictures_count} pictures)"
                 %td.sub{align: 'center'}
                   -category.included_pictures.each do |pic|
-                    = image_tag pic.image.url(:default), alt: pic.image_file_name
+                    = image_tag pic.image.url(:default, download: true), alt: pic.image_file_name
                 %td{width: 128}
                   - if category.users.include? current_user
                     = image_tag 'subscribe.png', width: 128

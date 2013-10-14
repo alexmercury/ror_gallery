@@ -19,6 +19,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'paperclip-dropbox', '>= 1'
 
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 

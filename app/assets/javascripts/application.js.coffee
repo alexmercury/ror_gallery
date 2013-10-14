@@ -20,5 +20,5 @@ Date::toUTCFormat = (format) ->
     S: @getUTCSeconds()
 
   for k of f
-    format = format.replace("%" + k, (if f[k] < 10 then "0" + f[k] else f[k]))
+    format = format.replace('%' + k, (if f[k] < 10 then '0' + f[k] else f[k]))
   format
