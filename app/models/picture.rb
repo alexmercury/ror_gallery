@@ -12,8 +12,9 @@ class Picture < ActiveRecord::Base
   paginates_per 5
 
   has_attached_file :image,
-                    url: '/assets/picture/:id/:style/:basename.:extension',
-                    path:':rails_root/public/assets/picture/:id/:style/:basename.:extension',
+                    storage: :dropbox,
+                    dropbox_credentials: Rails.root.join('config/dropbox.yml'),
+                    path: 'ror_gallery/:id/:style/:filename',
                     default_url: 'no_image.gif',
                     styles: {thumb:'256x256>', default: '128x128>'}
 

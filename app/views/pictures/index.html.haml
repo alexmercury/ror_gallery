@@ -12,7 +12,7 @@
               = picture.likes_count
               %i.icon-comment
               = picture.comments_count
-            = image_tag picture.image.url(:thumb), alt: picture.image_file_name
+            = image_tag picture.image.url(:thumb, download: true), alt: picture.image_file_name
           .reflection
-            = image_tag picture.image.url(:thumb), alt: 'slider-img'
+            = image_tag picture.image.url(:thumb, download: true), alt: 'slider-img'
             .overlay
