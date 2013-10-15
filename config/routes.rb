@@ -14,11 +14,16 @@ RorGallery::Application.routes.draw do
 
   scope '(:locale)', locale: /en|ru/ do
     get '/' => 'pictures#home', as: :locale_root
-    get 'pictures' => 'pictures#index', as: :locale_pictures
     get 'categories'=> 'categories#index', as: :locale_categories
     get 'categories/:title' => 'categories#show', as: :locale_category
     get 'categories/:title/:id' => 'pictures#show', as: :locale_picture
-    get 'comments' => 'comments#index', as: :locale_comments
+
+    resources :pictures, only: [:index] do
+      get ':page', action: :index, on: :collection
+    end
+    resources :comments, only: [:index] do
+      get ':page', action: :index, on: :collection
+    end
 
     devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations'}
   end

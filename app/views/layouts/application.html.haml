@@ -4,6 +4,7 @@
     %title= content_for?(:title) ? content_for(:title) : 'Ror Gallery'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    = yield :head_script
     = csrf_meta_tags
   %body
     .container
@@ -16,9 +17,9 @@
             %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.categories'), locale_categories_url
             %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.pictures'), locale_pictures_url
+              = link_to I18n.t('application.menu.pictures'), pictures_url
             %li{class: "#{ (controller.controller_name == 'comments') ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.comments'), locale_comments_url
+              = link_to I18n.t('application.menu.comments'), comments_url
           %ul.nav.nav-pills.nav-inverse.pull-right
             - unless 'registrations passwords sessions'.include? controller.controller_name
               %li
