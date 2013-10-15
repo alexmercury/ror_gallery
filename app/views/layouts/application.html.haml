@@ -4,6 +4,7 @@
     %title= content_for?(:title) ? content_for(:title) : 'Ror Gallery'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    = yield :head_script
     = csrf_meta_tags
   %body
     .container
@@ -12,11 +13,13 @@
 
           %ul.nav.nav-pills.nav-inverse.pull-left
             %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'home' ) ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.home'), (default_locale? ? root_url : locale_root_url)
+              = link_to I18n.t('application.menu.home'), locale_root_url
             %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.categories'), (default_locale? ? categories_url : locale_categories_url)
+              = link_to I18n.t('application.menu.categories'), locale_categories_url
             %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.pictures'), (default_locale? ? pictures_url : locale_pictures_url)
+              = link_to I18n.t('application.menu.pictures'), pictures_url
+            %li{class: "#{ (controller.controller_name == 'comments') ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.comments'), comments_url
           %ul.nav.nav-pills.nav-inverse.pull-right
             - unless 'registrations passwords sessions'.include? controller.controller_name
               %li
@@ -29,7 +32,7 @@
                     = I18n.t('application.menu.login')
                     - render partial: 'shared/user_login'
             %li
-              - if default_locale?
+              - if I18n.locale == :en
                 = link_to locale: :ru do
                   %i.flag.flag-ru
                   RU

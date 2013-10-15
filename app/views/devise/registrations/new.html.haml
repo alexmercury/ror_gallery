@@ -4,7 +4,7 @@
     .alert.alert-error
       %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
       = devise_error_messages!
-= form_for(resource, as: resource_name, url: (default_locale? ? user_registration_path : locale_user_registration_path)) do |f|
+= form_for(resource, as: resource_name, url: user_registration_path) do |f|
   %div
     = f.text_field :name, autofocus: true, placeholder: I18n.t('devise_views.registration.new.name_placeholder')
   %div

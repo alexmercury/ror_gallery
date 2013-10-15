@@ -2,18 +2,13 @@ module PusherRails
 
   extend self
 
-  def self.initializer(pusher)
-    @pusher = pusher
-  end
-
-  def trigger
-    @pusher['test_channel'].trigger('my_event', {
-        message: 'hello world'
-    })
-  end
-
   def comment_add(data = {})
-    @pusher['comments_channel'].trigger('comment_event', data)
+    begin
+      Pusher['comments_channel'].trigger('comment_event', data)
+    rescue Pusher::Error => e
+      puts('Pusher::Error\n' + e.to_s)
+      # (Pusher::AuthenticationError, Pusher::HTTPError, or Pusher::Error)
+    end
   end
 
 end

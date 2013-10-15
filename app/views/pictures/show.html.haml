@@ -27,9 +27,12 @@
           %span#comments_count= "#{@picture.comments_count}"
           %i.icon-thumbs-up.icon-white
           %span#likes_count= "#{@picture.likes_count}"
-        = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
-    = form_for @picture.comments.build, url: comment_create_path, method: :post, remote: true do  |f|
-      .input-append
-        = f.hidden_field :picture_id
-        = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge', autofocus: true
-        = f.submit 'add comment', class: 'btn btn-info', data: {disable_with: 'Please wait...'}
+        = image_tag @picture.image.url(download: true), id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
+    - if user_signed_in?
+      = form_for @picture.comments.build, url: comment_create_path, method: :post, remote: true do  |f|
+        .input-append
+          = f.hidden_field :picture_id
+          = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge', autofocus: true
+          = f.submit 'add comment', class: 'btn btn-info', data: {disable_with: 'Please wait...'}
+    - else
+      %span Login to add comment

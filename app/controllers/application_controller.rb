@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
                       kind: 'sign_in',
                       kind_id: current_user.id
                      })
-      categories_path
+      locale_categories_path
     end
   end
 
@@ -48,6 +48,14 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    if I18n.locale == I18n.default_locale
+      return {locale: nil}
+    else
+      return {locale: I18n.locale}
+    end
   end
 
 end

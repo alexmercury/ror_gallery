@@ -4,7 +4,7 @@
   %ul.nav.nav-tabs.nav-stacked
     - @categories.each do |category|
       %li
-        = link_to (default_locale? ? category_path(category.title) : locale_category_path(I18n.locale,category.title)), title: I18n.t('views.categories.index.link_title', category: category.title_loc) do
+        = link_to locale_category_path(category.title), title: I18n.t('views.categories.index.link_title', category: category.title_loc) do
           %table{width: '100%'}
             %tbody
               %tr
@@ -18,7 +18,7 @@
                   = "#{category.title_loc} (#{category.pictures_count})"
                 %td.sub{align: 'center'}
                   -category.included_pictures.each do |pic|
-                    = image_tag pic.image.url(:default), alt: pic.image_file_name
+                    = image_tag pic.image.url(:default, download: true), alt: pic.image_file_name
                 %td{width: 128}
                   - if category.users.include? current_user
                     = image_tag 'subscribe.png', width: 128

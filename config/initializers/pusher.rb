@@ -8,5 +8,3 @@ Pusher.host   = Settings.pusher.host
 Pusher.port   = Settings.pusher.api_port
 #for pusher.com
 #Pusher.url = "http://#{Settings.pusher.app_key}:#{Settings.pusher.app_secret}@api.pusherapp.com/apps/#{Settings.pusher.app_id}"
-
-PusherRails.initializer(Pusher)

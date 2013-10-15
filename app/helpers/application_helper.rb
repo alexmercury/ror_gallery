@@ -16,11 +16,4 @@ module ApplicationHelper
     content_for(:title) { page_title.to_s }
   end
 
-  def default_locale?
-    if params[:locale].to_s == I18n.default_locale.to_s || params[:locale].blank?
-       return true
-    end
-    false
-  end
-
 end

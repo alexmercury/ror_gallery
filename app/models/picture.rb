@@ -12,8 +12,9 @@ class Picture < ActiveRecord::Base
   paginates_per 5
 
   has_attached_file :image,
-                    url: '/assets/picture/:id/:style/:basename.:extension',
-                    path:':rails_root/public/assets/picture/:id/:style/:basename.:extension',
+                    storage: :dropbox,
+                    dropbox_credentials: Rails.root.join('config/dropbox.yml'),
+                    path: 'ror_gallery/:id__:style__:filename',
                     default_url: 'no_image.gif',
                     styles: {thumb:'256x256>', default: '128x128>'}
 
@@ -21,9 +22,12 @@ class Picture < ActiveRecord::Base
   validates :category_id, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates_attachment :image, presence: true, size: { in: 0..5.megabytes }
 
-
   def subscribe_mailer
-    Resque.enqueue(CategorySubscriptionMailer, self.id)
+    begin
+      Resque.redis.rpush('new_pictures', self.id)
+    rescue
+      puts 'Redis exeption...'
+    end
   end
 
 end
