@@ -1,4 +1,4 @@
-%table{width: 700, border: 0, cellpadding: 0, cellspacing: 0, align: 'center', style: 'table-layout: fixed; background: #fff; border: 0; border-left: 1px solid #ccc; border-right: 1px solid #ccc;'}
+%table{width: 700, border: 0, cellpadding: 0, cellspacing: 0, align: 'center', style: 'table-layout: fixed; background: #fff; border:1px solid #ccc;'}
   %thead
     %tr{height: 80, style: 'border-bottom: 1px solid #ccc; background-color: #eee;'}
       %th
@@ -23,18 +23,18 @@
               %tbody{style: 'background-color: #fafafa;'}
                 %tr
                   %td{width: 276, height: 276, align: 'center', style: 'padding: 10px;'}
-                    =image_tag picture.image.url(:thumb)
+                    =image_tag picture.image.url(:thumb, download: true)
                   %td
                     %table{width: '100%', border: 0, cellpadding: 0, cellspacing: 0, style: 'margin-top: 10px;'}
                       %tbody
                         %tr
                           %td
                             %span You subscribed to category:
-                            %span= link_to picture.category.title, category_url(picture.category.title, picture: Settings.mailer.url_host)
+                            %span= link_to picture.category.title, locale_category_url(title: picture.category.title, host: Settings.mailer.url_host)
                         %tr
                           %td
                             %span New picture:
-                            %span= link_to picture.title, picture_url( picture.category.title, picture.id, host: Settings.mailer.url_host)
+                            %span= link_to picture.title, locale_picture_url(title: picture.category.title, id: picture.id, host: Settings.mailer.url_host)
         %td
     %tr
       %td
@@ -52,12 +52,10 @@
       %td{style: 'font-family: Helvetica, Arial, sans-serif; font-size: 12px;'}
         %div
           Forgot your password?
-          %a{href: '#'}
-            reset password
+          %span= link_to 'reset password', new_user_password_url(host: Settings.mailer.url_host)
         %div
           You can
-          %a{href: '#', target: '_blank'}
-            unsubscribe
+          %span= link_to 'unsubscribe', locale_categories_url(host: Settings.mailer.url_host)
           from these emails
         %div{style: 'text-align: center;'}
           %strong= "RoR Mercury © #{DateTime.now.strftime('%Y')}"
