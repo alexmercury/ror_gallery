@@ -16,7 +16,11 @@ class CategorySubscriptionMailer
       end
 
       tmp.uniq.each do |id|
-        UsersSubscription.user_new_picture_inform(id, ids)
+        puts id
+        user = User.includes(:categories).find(id)
+        pictures = Picture.where('id IN (:ids) AND category_id IN (:cat_ids)',
+                                  ids: ids, cat_ids: user.categories.map{|cat| cat.id})
+        UsersSubscription.user_new_picture_inform(user, pictures).deliver
       end
       Resque.redis.del('new_pictures')
     end
