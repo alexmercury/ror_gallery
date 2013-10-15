@@ -11,12 +11,11 @@ class RegistrationsController <  Devise::RegistrationsController
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success) if is_navigational_format?
       else
-        render action:'new'
+        render action: :new
       end
     else
-      @user.valid?
-      @user.errors.add(:captcha, 'Wrong captcha ...')
-      render action:'new'
+      @user.valid_with_captcha?
+      render action: :new
     end
   end
 

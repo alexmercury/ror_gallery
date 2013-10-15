@@ -5,6 +5,8 @@ ru:
       home: 'Главная'
       categories: 'Категории'
       pictures: 'Картинки'
+      comments: 'Комментарии'
+      login: 'Войти'
 
   views:
     pagination:

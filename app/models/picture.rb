@@ -23,7 +23,11 @@ class Picture < ActiveRecord::Base
   validates_attachment :image, presence: true, size: { in: 0..5.megabytes }
 
   def subscribe_mailer
-    Resque.enqueue(CategorySubscriptionMailer, self.id)
+    begin
+      Resque.redis.rpush('new_pictures', self.id)
+    rescue
+      puts 'Redis exeption...'
+    end
   end
 
 end
