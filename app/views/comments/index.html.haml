@@ -1,0 +1,11 @@
+= paginate @comments, window: 2
+- @comments.each do |comment|
+  .comment-div
+    %span.label.label-inverse= comment.user.name
+
+    %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
+
+    .well.well-small
+      = comment.description
+      %br
+      = link_to 'picture link', locale_picture_path(comment.picture.category.title, comment.picture.id)
