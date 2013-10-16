@@ -1,22 +1,22 @@
-.container
-  - if user_signed_in?
-    - if @category.users.include? current_user
-      .subscribe-image
-        = image_tag 'subscribe.png', width: 128
-  %h1= @category.title_loc
-  %div
-    = paginate @pictures, window: 2
-    #featured
-      %ul
-        - @pictures.each do |picture|
-          %li
-            = link_to locale_picture_path( picture.category.title, picture.id) do
-              %span.bottom-label
-                %i.icon-thumbs-up
-                = picture.likes_count
-                %i.icon-comment
-                = picture.comments_count
-              = image_tag picture.image.url(:thumb, download: true), alt: picture.image_file_name
-            .reflection
-              = image_tag picture.image.url(:thumb, download: true), alt: 'slider-img'
-              .overlay
+- title I18n.t('views.categories.show.page_title', category: @category.title_loc)
+- if user_signed_in?
+  - if @category.users.include? current_user
+    .subscribe-image
+      = image_tag 'subscribe.png', width: 128
+%h1.text-center= I18n.t('views.categories.show.title', category: @category.title_loc)
+%div
+  #featured
+    %ul
+      - @pictures.each do |picture|
+        %li
+          = link_to locale_picture_path( picture.category.title, picture.id) do
+            %span.bottom-label
+              %i.icon-thumbs-up
+              = picture.likes_count
+              %i.icon-comment
+              = picture.comments_count
+            = image_tag picture.image.url(:thumb, download: true), alt: picture.image_file_name
+          .reflection
+            = image_tag picture.image.url(:thumb, download: true), alt: 'slider-img'
+            .overlay
+  = paginate @pictures, window: 2
