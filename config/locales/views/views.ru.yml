@@ -12,7 +12,20 @@ ru:
     categories:
       index:
         page_title: 'Ror Gallery | Категории'
-        title: 'Категории'
+        title: 'Категории картинок сайта Ror Gallery'
         link_title: 'Категория: %{category}'
         unsubscribe_title: 'отписаться'
         subscribe_title: 'подписаться'
+      show:
+        page_title: 'Ror Gallery | Категория %{category}'
+        title: 'Категория %{category}'
+    pictures:
+      index:
+        page_title: 'Ror Gallery | Картинки'
+        title: 'Картинки сайта Ror Gallery'
+      show:
+        page_title: 'Ror Gallery | %{title}'
+        button_comments_load: 'Загрузить ещё 5 комментариев...'
+        button_add_comment: 'добавить'
+        comment_placeholder: 'Текст комментария'
+        user_not_login: 'Необходимо зарегистрироваться чтобы оставлять комментарии'

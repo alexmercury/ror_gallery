@@ -12,7 +12,20 @@ en:
     categories:
       index:
         page_title: 'Ror Gallery | Categories'
-        title: 'Categories'
+        title: 'Pictures on categories Ror Gallery site'
         link_title: 'Category: %{category}'
         unsubscribe_title: 'unsubscribe'
         subscribe_title: 'subscribe'
+      show:
+        page_title: 'Ror Gallery | Category %{category}'
+        title: 'Category %{category}'
+    pictures:
+      index:
+        page_title: 'Ror Gallery | Pictures'
+        title: 'Ror Gallery site pictures'
+      show:
+        page_title: 'Ror Gallery | %{title}'
+        button_comments_load: 'Load 5 prev comments...'
+        button_add_comment: 'add'
+        comment_placeholder: 'Comment text'
+        user_not_login: 'You must login to add comments'
