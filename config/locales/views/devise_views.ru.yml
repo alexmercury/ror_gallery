@@ -8,6 +8,14 @@ ru:
         password_placeholder: 'Введите ваш пароль'
         password_confirmation_placeholder: 'Подтвердите пароль'
         submit: 'Регистрация'
+      edit:
+        title: 'Изменить профиль'
+        name_label: 'Ваше имя'
+        email_label: 'Ваш email'
+        button_pass_change: 'Изменить пароль'
+        button_submit: 'Обновить'
+        button_account_del: 'Удалить мой профиль'
+        account_del_confirm: 'Вы уверены ?'
     shared_links:
       sign_in: 'Войти'
       sign_up: 'Регистрация'
