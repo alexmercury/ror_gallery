@@ -17,21 +17,14 @@ ActiveAdmin.register Category do
     default_actions
   end
 
-  form html: { :multipart => true } do |f|
+  form html:{multipart: true} do |f|
     f.inputs 'Category Details' do
       f.input :title, as: :string
-      f.input :title_locale, as: :string, hint: f.template.hidden_field_tag(:locale, params[:locale])
+        f.translated_inputs do |t|
+          t.input :title_locale, as: :string
+        end
     end
     f.actions
-  end
-
-  controller do
-    before_filter :set_locale
-
-    def set_locale
-      I18n.locale = params[:locale]
-    end
-
   end
 
 end

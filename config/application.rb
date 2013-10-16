@@ -61,6 +61,8 @@ module RorGallery
 
     config.i18n.fallbacks = true
 
+    config.i18n.available_locales = [:en, :ru]
+
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
