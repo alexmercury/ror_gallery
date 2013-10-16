@@ -2,10 +2,10 @@ class UsersSubscription < ActionMailer::Base
 
   default from: Settings.mailer.user_name
 
-  def user_new_picture_inform(user, picture)
+  def user_new_picture_inform(user, pictures)
     @user = user
-    @picture  = picture
-    mail(to: user.email, subject: "New picture in the category: #{@picture.category.title} ...")
+    @pictures = pictures
+    mail(to: @user.email, subject: "Admin 'RoR Gallery' has loaded #{@pictures.count} new pictures.")
   end
 
 end

@@ -1,12 +1,62 @@
-!!!
-%html
-  %head
-    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
-  %body
-    %h1= "Hello #{@user.name} !"
-    %div
-      %span You subscribed to category:
-      %span= link_to @picture.category.title, category_url(@picture.category.title, host: Settings.mailer.url_host)
-    %div
-      %span New picture:
-      %span= link_to @picture.title, picture_url( @picture.category.title, @picture.id, host: Settings.mailer.url_host)
+%table{width: 700, border: 0, cellpadding: 0, cellspacing: 0, align: 'center', style: 'table-layout: fixed; background: #fff; border:1px solid #ccc;'}
+  %thead
+    %tr{height: 80, style: 'border-bottom: 1px solid #ccc; background-color: #eee;'}
+      %th
+      %th{align: 'center', width: 550}
+        %table{height: 80, border: 0, cellpadding: 0, cellspacing: 0, style: 'margin-top: 10px;'}
+          %tr
+            %td{style: 'font-size: 16px; font-weight: bold; color:#000;', align: 'center'}
+              %span= @user.name
+          %tr
+            %td{style: 'font-size:14px; color:#555;'}
+              %span
+                Add new pictures on
+              = link_to 'Gallery', root_url(host: Settings.mailer.url_host)
+          %tr
+      %th
+  %tbody
+    - @pictures.each do |picture|
+      %tr
+        %td
+          %td
+            %table{width: '100%', border: 0, cellpadding: 0, cellspacing: 0, style: 'margin: 10px 0; border: 1px solid #ccc;'}
+              %tbody{style: 'background-color: #fafafa;'}
+                %tr
+                  %td{width: 276, height: 276, align: 'center', style: 'padding: 10px;'}
+                    =image_tag picture.image.url(:thumb)
+                  %td
+                    %table{width: '100%', border: 0, cellpadding: 0, cellspacing: 0, style: 'margin-top: 10px;'}
+                      %tbody
+                        %tr
+                          %td
+                            %span You subscribed to category:
+                            %span= link_to picture.category.title, locale_category_url(title: picture.category.title, host: Settings.mailer.url_host)
+                        %tr
+                          %td
+                            %span New picture:
+                            %span= link_to picture.title, locale_picture_url(title: picture.category.title, id: picture.id, host: Settings.mailer.url_host)
+        %td
+    %tr
+      %td
+      %td{style: 'padding: 10px; background-color: #ededed; border-radius: 5px;'}
+        %strong Do not miss anything.
+        Stay in the know.
+        %a{href: root_url(host: Settings.mailer.url_host), style: 'background-color: #2f96b4; text-decoration: none; cursor: pointer; border-radius: 5px; padding: 5px; float: right;'}
+          %span{style: 'color: #fff;'}
+            Go to site url
+      %td
+    %tr{height: 10}
+      %td{colspan: 3}
+    %tr{height: 80, style: 'border-top: 1px solid #ccc; background-color: #eee;'}
+      %td
+      %td{style: 'font-family: Helvetica, Arial, sans-serif; font-size: 12px;'}
+        %div
+          Forgot your password?
+          %span= link_to 'reset password', new_user_password_url(host: Settings.mailer.url_host)
+        %div
+          You can
+          %span= link_to 'unsubscribe', locale_categories_url(host: Settings.mailer.url_host)
+          from these emails
+        %div{style: 'text-align: center;'}
+          %strong= "RoR Mercury © #{DateTime.now.strftime('%Y')}"
+      %td

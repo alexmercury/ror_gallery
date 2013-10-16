@@ -1,4 +1,3 @@
-= paginate @comments, window: 2
 - @comments.each do |comment|
   .comment-div
     %span.label.label-inverse= comment.user.name
@@ -9,3 +8,4 @@
       = comment.description
       %br
       = link_to 'picture link', locale_picture_path(comment.picture.category.title, comment.picture.id)
+= paginate @comments, window: 2
