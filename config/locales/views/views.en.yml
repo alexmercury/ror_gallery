@@ -9,6 +9,20 @@ en:
         login: 'Login'
         facebook_login: 'Login with <b>facebook</b>'
         register: 'Register'
+      user_modal:
+        title: 'Information about you:'
+        email: 'Your email:'
+        registration: 'Registered:'
+        reg_with: 'via'
+        last_update: 'Last changes:'
+        edit_profile: 'Edit profile'
+        session_settings: 'Session parameters:'
+        ip: 'IP'
+        sign_in: 'Login(%{count})'
+        at: 'at'
+        sign_out: 'Sign out'
+        sign_out_confirm: 'Are you sure ?'
+        button_close: 'Close'
     categories:
       index:
         page_title: 'Ror Gallery | Categories'
@@ -29,3 +43,9 @@ en:
         button_add_comment: 'add'
         comment_placeholder: 'Comment text'
         user_not_login: 'You must login to add comments'
+    comments:
+      index:
+        page_title: 'Ror Gallery | Comments'
+        title: 'Comments on pictures Ror Gallery site'
+        at: 'at'
+        picture_link: 'picture link'

@@ -9,6 +9,20 @@ ru:
         login: 'Войти'
         facebook_login: 'Войти через <b>facebook</b>'
         register: 'Регистрация'
+      user_modal:
+        title: 'Информация о вас:'
+        email: 'Ваш email:'
+        registration: 'Зарегистрированы:'
+        reg_with: 'с помощью'
+        last_update: 'Последние изменения:'
+        edit_profile: 'Редактировать профиль'
+        session_settings: 'Параметры сессии:'
+        ip: 'IP'
+        sign_in: 'Вход(%{count})'
+        at: 'в'
+        sign_out: 'Выйти'
+        sign_out_confirm: 'Вы уверены ?'
+        button_close: 'Закрыть'
     categories:
       index:
         page_title: 'Ror Gallery | Категории'
@@ -29,3 +43,9 @@ ru:
         button_add_comment: 'добавить'
         comment_placeholder: 'Текст комментария'
         user_not_login: 'Необходимо зарегистрироваться чтобы оставлять комментарии'
+    comments:
+      index:
+        page_title: 'Ror Gallery | Комментарии'
+        title: 'Комментарии к картинкам сайта Ror Gallery'
+        at: 'в'
+        picture_link: 'ссылка на картинку'
