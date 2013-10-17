@@ -49,3 +49,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
+
+gem 'rails_12factor'
