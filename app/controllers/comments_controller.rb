@@ -11,11 +11,11 @@ class CommentsController < ApplicationController
 
     if comment.save
 
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'comment',
-                      kind_id: comment.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'comment',
+                     kind_id: comment.id)
+      end
 
       PusherRails.comment_add({comment: comment, user_name: current_user.name})
 

@@ -4,10 +4,6 @@ gem 'rails', '3.2.13'
 gem 'puma', '~> 2.5.1'
 gem 'pg'
 
-gem 'redis', '~> 3.0.5'
-gem 'resque', require: 'resque/server'
-gem 'resque-scheduler', require: 'resque_scheduler'
-
 gem 'pusher'
 
 gem 'kaminari', '~> 0.14.1'

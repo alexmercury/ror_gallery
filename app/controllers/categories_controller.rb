@@ -15,11 +15,11 @@ class CategoriesController < ApplicationController
     category_subscribe = current_user.category_subscriptions.new(category_id: params[:category_id])
     if category_subscribe.save
 
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'subscribe',
-                      kind_id: category_subscribe.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'subscribe',
+                     kind_id: category_subscribe.id)
+      end
 
       render nothing: true
     else
@@ -36,11 +36,11 @@ class CategoriesController < ApplicationController
 
     if category_subscribe.destroy
 
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'unsubscribe',
-                      kind_id: category_subscribe.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'unsubscribe',
+                     kind_id: category_subscribe.id)
+      end
 
       render nothing: true
     else

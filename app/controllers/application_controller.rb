@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   # For gem 'devise' (after 'login/logout' path)
   def after_sign_out_path_for(resource_or_scope)
     if resource_class == User
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'sign_out',
-                      kind_id: current_user.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'sign_out',
+                     kind_id: current_user.id)
+      end
       root_path
     else
       root_path
@@ -25,11 +25,11 @@ class ApplicationController < ActionController::Base
     if resource_class == AdminUser
       admin_dashboard_path
     else
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'sign_in',
-                      kind_id: current_user.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'sign_in',
+                     kind_id: current_user.id)
+      end
       locale_categories_path
     end
   end
@@ -37,11 +37,11 @@ class ApplicationController < ActionController::Base
   def event_user
     if !!current_user
       if 'index show'.include?(params[:action].to_s)
-        Resque.enqueue(UserEventNavigation,
-                       {url: request.original_url.to_s,
-                        user_id: current_user.id.to_s,
-                        created_at: DateTime.now
-                       })
+        RailsStream.do_in_stream do
+          NavigationEvent.create(url: request.original_url.to_s,
+                                 user_id: current_user.id.to_s,
+                                 created_at: DateTime.now)
+        end
       end
     end
   end

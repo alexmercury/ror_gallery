@@ -37,6 +37,4 @@ RorGallery::Application.routes.draw do
   post 'unsubscribe' => 'categories#unsubscribe'
   post '/pusher/auth'
 
-  mount Resque::Server, :at => '/resque'
-
 end

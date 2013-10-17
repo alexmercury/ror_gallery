@@ -8,11 +8,11 @@ class LikesController < ApplicationController
 
     if like.save
 
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'like',
-                      kind_id: like.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'like',
+                     kind_id: like.id)
+      end
 
       render nothing: true
     else
@@ -29,11 +29,12 @@ class LikesController < ApplicationController
 
     if like.destroy
 
-      Resque.enqueue(UserEvents,
-                     {user_id: current_user.id,
-                      kind: 'dislike',
-                      kind_id: like.id
-                     })
+      RailsStream.do_in_stream do
+        Event.create(user_id: current_user.id,
+                     kind: 'dislike',
+                     kind_id: like.id)
+      end
+
       render nothing: true
     else
       respond_to do |format|
