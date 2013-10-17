@@ -13,7 +13,12 @@ class Picture < ActiveRecord::Base
 
   has_attached_file :image,
                     storage: :dropbox,
-                    dropbox_credentials: Rails.root.join('config/dropbox.yml'),
+                    dropbox_credentials: {app_key: ENV['DROPBOX_KEY'],
+                                          app_secret: ENV['DROPBOX_SECRET'],
+                                          access_token: ENV['DROPBOX_TOKEN'],
+                                          access_token_secret: ENV['DROPBOX_TOKEN_SECRET'],
+                                          user_id: ENV['DROPBOX_UID'],
+                                          access_type: ENV['DROPBOX_TYPE']},
                     path: 'heroku/ror_gallery/:id__:style__:filename',
                     default_url: 'no_image.gif',
                     styles: {thumb:'256x256>', default: '128x128>'}
