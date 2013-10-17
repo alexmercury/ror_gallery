@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
 
   paginates_per 5
 
-  validates :description, presence: true, length: {minimum: 2, maximum: 2048}
+  validates :description, presence: true, length: {minimum: 2, maximum: 1000}
   validates :picture_id, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :user_id, presence: true, numericality: {only_integer: true, greater_than: 0}
 
