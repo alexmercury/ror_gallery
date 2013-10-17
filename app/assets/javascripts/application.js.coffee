@@ -2,7 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require jquery.easing.1.3
-#= require jquery.roundabout-1.0.min
+#= require jquery.roundabout.min
 #= require pictures
 #= require likes
 #= require pusher
@@ -20,5 +20,5 @@ Date::toUTCFormat = (format) ->
     S: @getUTCSeconds()
 
   for k of f
-    format = format.replace("%" + k, (if f[k] < 10 then "0" + f[k] else f[k]))
+    format = format.replace('%' + k, (if f[k] < 10 then '0' + f[k] else f[k]))
   format

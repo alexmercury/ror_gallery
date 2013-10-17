@@ -1,6 +1,10 @@
 class PicturesController < ApplicationController
 
   def index
+    @pictures = Picture.includes(:category).order('likes_count DESC').page params[:page]
+  end
+
+  def home
     @pictures = Picture.includes(:category).page params[:page]
   end
 

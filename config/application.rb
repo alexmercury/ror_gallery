@@ -59,6 +59,9 @@ module RorGallery
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.i18n.fallbacks = true
+
+    config.i18n.available_locales = [:en, :ru]
 
     config.autoload_paths += %W(#{config.root}/lib)
   end

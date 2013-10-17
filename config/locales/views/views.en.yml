@@ -1,0 +1,51 @@
+en:
+  views:
+    shared:
+      user_login:
+        title: 'Log in'
+        email_placeholder: 'Enter your email'
+        password_placeholder: 'Enter your password'
+        remember_me: 'Remember me'
+        login: 'Login'
+        facebook_login: 'Login with <b>facebook</b>'
+        register: 'Register'
+      user_modal:
+        title: 'Information about you:'
+        email: 'Your email:'
+        registration: 'Registered:'
+        reg_with: 'via'
+        last_update: 'Last changes:'
+        edit_profile: 'Edit profile'
+        session_settings: 'Session parameters:'
+        ip: 'IP'
+        sign_in: 'Login(%{count})'
+        at: 'at'
+        sign_out: 'Sign out'
+        sign_out_confirm: 'Are you sure ?'
+        button_close: 'Close'
+    categories:
+      index:
+        page_title: 'Ror Gallery | Categories'
+        title: 'Pictures on categories Ror Gallery site'
+        link_title: 'Category: %{category}'
+        unsubscribe_title: 'unsubscribe'
+        subscribe_title: 'subscribe'
+      show:
+        page_title: 'Ror Gallery | Category %{category}'
+        title: 'Category %{category}'
+    pictures:
+      index:
+        page_title: 'Ror Gallery | Pictures'
+        title: 'Ror Gallery site pictures'
+      show:
+        page_title: 'Ror Gallery | %{title}'
+        button_comments_load: 'Load 5 prev comments...'
+        button_add_comment: 'add'
+        comment_placeholder: 'Comment text'
+        user_not_login: 'You must login to add comments'
+    comments:
+      index:
+        page_title: 'Ror Gallery | Comments'
+        title: 'Comments on pictures Ror Gallery site'
+        at: 'at'
+        picture_link: 'picture link'

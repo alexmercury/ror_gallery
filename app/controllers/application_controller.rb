@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   after_filter :event_user
+  before_filter :set_locale
 
   private
   # For gem 'devise' (after 'login/logout' path)
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
                       kind: 'sign_in',
                       kind_id: current_user.id
                      })
-      categories_path
+      locale_categories_path
     end
   end
 
@@ -42,6 +43,19 @@ class ApplicationController < ActionController::Base
                         created_at: DateTime.now
                        })
       end
+    end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
+  end
+
+  def default_url_options
+    if I18n.locale == I18n.default_locale
+      return {locale: nil}
+    else
+      return {locale: I18n.locale}
     end
   end
 

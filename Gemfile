@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'puma', '~> 2.5.1'
 gem 'pg'
-gem 'resque', :require => 'resque/server'
+
+gem 'redis', '~> 3.0.5'
+gem 'resque', require: 'resque/server'
+gem 'resque-scheduler', require: 'resque_scheduler'
 
 gem 'pusher'
 
@@ -18,30 +21,25 @@ gem 'devise', '~> 3.0.3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'activeadmin'
 
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+gem 'paperclip-dropbox', '>= 1'
+
+gem 'simple_captcha', git: 'git://github.com/galetahub/simple-captcha.git'
 
 gem 'jquery-rails', '~> 2.3.0'
 
 gem 'rails_config'
 
+gem 'globalize3', '~> 0.3.0'
+gem 'activeadmin-globalize3'
 
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
-
-
-gem 'activeadmin'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.4'
@@ -55,18 +53,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

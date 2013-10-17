@@ -1,17 +1,18 @@
-%h1 Picture
+- title I18n.t('views.pictures.index.page_title')
+%h1.text-center= I18n.t('views.pictures.index.title')
 %div
-  = paginate @pictures, window: 2
   #featured
     %ul
       - @pictures.each do |picture|
         %li
-          = link_to picture_path( picture.category.title, picture.id) do
+          = link_to locale_picture_path( picture.category.title, picture.id) do
             %span.bottom-label
               %i.icon-thumbs-up
               = picture.likes_count
               %i.icon-comment
               = picture.comments_count
-            = image_tag picture.image.url(:thumb), alt: picture.image_file_name
+            = image_tag picture.image.url(:thumb, download: true), alt: picture.image_file_name
           .reflection
-            = image_tag picture.image.url(:thumb), alt: 'slider-img'
+            = image_tag picture.image.url(:thumb, download: true), alt: 'slider-img'
             .overlay
+  = paginate @pictures, window: 2

@@ -1,19 +1,20 @@
-.container
-  %h2= @picture.title
-  .picture-show-wrapper
-    .picture-show-container
-      .picture-comments-container
-        .comments-container
-          - if @comments.total_pages > 1
-            %button.btn.btn-info.btn-block#load_comment{pages:"#{@comments.total_pages}"}
-              Load 5 prev comments ...
-          - @comments.reverse.each do |comment|
-            .comment-div
-              %span.label.label-inverse= comment.user.name
-              %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
-              .well.well-small
-                = comment.description
-      .picture-show-td
+- title I18n.t('views.pictures.show.page_title', title: @picture.title)
+%h2.text-center= @picture.title
+.picture-show-wrapper
+  .picture-show-container
+    .picture-comments-container
+      .comments-container
+        - if @comments.total_pages > 1
+          %button.btn.btn-info.btn-block#load_comment{data:{pages:"#{@comments.total_pages}", id: "#{@picture.id}"}}
+            = I18n.t('views.pictures.show.button_comments_load')
+        - @comments.reverse.each do |comment|
+          .comment-div
+            %span.label.label-inverse= comment.user.name
+            %span.label.label-info.label-right=  comment.created_at.strftime('%m-%d-%Y at %H:%M')
+            .well.well-small
+              = comment.description
+    .picture-show-td
+      - if user_signed_in?
         .picture-like-button
           - if @picture.users.include? current_user
             %a.btn.btn-danger#dislike
@@ -21,14 +22,17 @@
           - else
             %a.btn.btn-info#like
               %i.icon-thumbs-up.icon-white
-        .picture-like
-          %i.icon-comment.icon-white
-          %span#comments_count= "#{@picture.comments_count}"
-          %i.icon-thumbs-up.icon-white
-          %span#likes_count= "#{@picture.likes_count}"
-        = image_tag @picture.image.url, id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
+      .picture-like
+        %i.icon-comment.icon-white
+        %span#comments_count= "#{@picture.comments_count}"
+        %i.icon-thumbs-up.icon-white
+        %span#likes_count= "#{@picture.likes_count}"
+      = image_tag @picture.image.url(download: true), id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
+  - if user_signed_in?
     = form_for @picture.comments.build, url: comment_create_path, method: :post, remote: true do  |f|
       .input-append
         = f.hidden_field :picture_id
-        = f.text_field :description, placeholder: 'Comment text...', class: 'input-xlarge', autofocus: true
-        = f.submit 'add comment', class: 'btn btn-info', data: {disable_with: 'Please wait...'}
+        = f.text_field :description, placeholder: I18n.t('views.pictures.show.comment_placeholder'), class: 'input-xlarge', autofocus: true
+        = f.submit I18n.t('views.pictures.show.button_add_comment'), class: 'btn btn-info', data: {disable_with: 'Please wait...'}
+  - else
+    %span= I18n.t('views.pictures.show.user_not_login')

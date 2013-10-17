@@ -1,22 +1,23 @@
-.container
-  %h1 Categories
-  %ul.nav.nav-tabs.nav-stacked
-    - @categories.each do |category|
-      %li
-        = link_to category_path(category.title), title: "Category: #{category.title}" do
-          = category.title.upcase
-          %span
-            %i.icon-picture
-            = category.pictures_count
-          %span
-            %i.icon-calendar
-            = category.updated_at
-          - if user_signed_in?
-            - if category.users.include? current_user
-              %span.btn.btn-inverse.unsubscribe{id: category.id}
-                %i.icon-eye-close.icon-white
-            - else
-              %span.btn.btn-inverse.subscribe{id: category.id}
-                %i.icon-eye-open.icon-white
-          - else
-            %span.btn (you must login to subscribe)
+- title I18n.t('views.categories.index.page_title')
+%h1.text-center= I18n.t('views.categories.index.title')
+%ul.nav.nav-tabs.nav-stacked
+  - @categories.each do |category|
+    %li
+      = link_to locale_category_path(category.title), title: I18n.t('views.categories.index.link_title', category: category.title_loc) do
+        %table{width: '100%'}
+          %tbody
+            %tr
+              %td{width: '10%'}
+                - if user_signed_in?
+                  - if category.users.include? current_user
+                    %span.unsubscribe{id: category.id, title: I18n.t('views.categories.index.unsubscribe_title')}
+                  - else
+                    %span.subscribe{id: category.id, title: I18n.t('views.categories.index.subscribe_title')}
+              %td{width: '20%'}
+                = "#{category.title_loc} (#{category.pictures_count})"
+              %td.sub{align: 'center'}
+                -category.included_pictures.each do |pic|
+                  = image_tag pic.image.url(:default, download: true), alt: pic.image_file_name
+              %td{width: 128}
+                - if category.users.include? current_user
+                  = image_tag 'subscribe.png', width: 128
