@@ -1,7 +1,5 @@
-- title 'Ror Gallery | Pictures'
-%h1 Picture
+- title 'Ror Gallery'
 %div
-  = paginate @pictures, window: 2
   #featured
     %ul
       - @pictures.each do |picture|
@@ -16,3 +14,4 @@
           .reflection
             = image_tag picture.image.url(:thumb), alt: 'slider-img'
             .overlay
+  = paginate @pictures, window: 2

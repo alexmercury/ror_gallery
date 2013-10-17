@@ -33,6 +33,7 @@ gem 'jquery-rails', '~> 2.3.0'
 gem 'rails_config'
 
 gem 'globalize3', '~> 0.3.0'
+gem 'activeadmin-globalize3'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
