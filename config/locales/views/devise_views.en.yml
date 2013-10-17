@@ -13,6 +13,8 @@ en:
         name_label: 'Your name'
         email_label: 'Your email'
         button_pass_change: 'Password change'
+        new_password_placeholder: 'New password'
+        new_password_confirmation_placeholder: 'Password confirmation'
         button_submit: 'Update'
         button_account_del: 'Delete my account'
         account_del_confirm: 'Are you sure?'
@@ -26,3 +28,10 @@ en:
         title: 'Forgot your password?'
         email_placeholder: 'Enter your email'
         submit: 'Send me reset password instructions'
+    session:
+      new:
+        title: 'Sign in'
+        email_placeholder: 'Enter your email'
+        password_placeholder: 'Enter your password'
+        remember_me: 'Remember me'
+        login: 'Login'

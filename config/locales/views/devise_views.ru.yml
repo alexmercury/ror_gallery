@@ -13,6 +13,8 @@ ru:
         name_label: 'Ваше имя'
         email_label: 'Ваш email'
         button_pass_change: 'Изменить пароль'
+        new_password_placeholder: 'Новый пароль'
+        new_password_confirmation_placeholder: 'Подтверждение пароля'
         button_submit: 'Обновить'
         button_account_del: 'Удалить мой профиль'
         account_del_confirm: 'Вы уверены ?'
@@ -26,3 +28,10 @@ ru:
         title: 'Забыли ваш пароль?'
         email_placeholder: 'Введите ваш email'
         submit: 'Отправить мне инструкцию для сброса пароля'
+    session:
+      new:
+        title: 'Выполнить вход'
+        email_placeholder: 'Введите ваш email'
+        password_placeholder: 'Введите ваш пароль'
+        remember_me: 'Запомнить меня'
+        login: 'Войти'
