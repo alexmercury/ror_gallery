@@ -1,6 +1,6 @@
 class UsersSubscription < ActionMailer::Base
 
-  default from: Settings.mailer.user_name
+  default from: ENV['MAILER_USER_NAME']
 
   def user_new_picture_inform(user, pictures)
     @user = user

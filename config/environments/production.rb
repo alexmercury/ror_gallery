@@ -58,6 +58,17 @@ RorGallery::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
+  config.action_mailer.smtp_settings = {
+      address:              ENV['MAILER_ADDRESS'],
+      port:                 ENV['MAILER_PORT'],
+      domain:               ENV['MAILER_DOMAIN'],
+      user_name:            ENV['MAILER_USER_NAME'],
+      password:             ENV['MAILER_PASS'],
+      authentication:       ENV['MAILER_AUTH'],
+      enable_starttls_auto: true
+  }
+  config.action_mailer.default_url_options = {host: ENV['MAILER_URL_HOST']}
+
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 

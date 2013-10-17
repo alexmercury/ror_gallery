@@ -11,7 +11,7 @@
             %td{style: 'font-size:14px; color:#555;'}
               %span
                 Add new pictures on
-              = link_to 'Gallery', root_url(host: Settings.mailer.url_host)
+              = link_to 'Gallery', root_url(host: ENV['MAILER_URL_HOST'])
           %tr
       %th
   %tbody
@@ -30,18 +30,18 @@
                         %tr
                           %td
                             %span You subscribed to category:
-                            %span= link_to picture.category.title, locale_category_url(title: picture.category.title, host: Settings.mailer.url_host)
+                            %span= link_to picture.category.title, locale_category_url(title: picture.category.title, host: ENV['MAILER_URL_HOST'])
                         %tr
                           %td
                             %span New picture:
-                            %span= link_to picture.title, locale_picture_url(title: picture.category.title, id: picture.id, host: Settings.mailer.url_host)
+                            %span= link_to picture.title, locale_picture_url(title: picture.category.title, id: picture.id, host: ENV['MAILER_URL_HOST'])
         %td
     %tr
       %td
       %td{style: 'padding: 10px; background-color: #ededed; border-radius: 5px;'}
         %strong Do not miss anything.
         Stay in the know.
-        %a{href: root_url(host: Settings.mailer.url_host), style: 'background-color: #2f96b4; text-decoration: none; cursor: pointer; border-radius: 5px; padding: 5px; float: right;'}
+        %a{href: root_url(host: ENV['MAILER_URL_HOST']), style: 'background-color: #2f96b4; text-decoration: none; cursor: pointer; border-radius: 5px; padding: 5px; float: right;'}
           %span{style: 'color: #fff;'}
             Go to site url
       %td
@@ -52,10 +52,10 @@
       %td{style: 'font-family: Helvetica, Arial, sans-serif; font-size: 12px;'}
         %div
           Forgot your password?
-          %span= link_to 'reset password', new_user_password_url(host: Settings.mailer.url_host)
+          %span= link_to 'reset password', new_user_password_url(host: ENV['MAILER_URL_HOST'])
         %div
           You can
-          %span= link_to 'unsubscribe', locale_categories_url(host: Settings.mailer.url_host)
+          %span= link_to 'unsubscribe', locale_categories_url(host: ENV['MAILER_URL_HOST'])
           from these emails
         %div{style: 'text-align: center;'}
           %strong= "RoR Mercury © #{DateTime.now.strftime('%Y')}"
