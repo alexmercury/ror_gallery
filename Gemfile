@@ -21,7 +21,7 @@ gem 'devise', '~> 3.0.3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-gem 'activeadmin'
+gem 'activeadmin', '0.6.0'
 
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'paperclip-dropbox', '>= 1'
