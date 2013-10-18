@@ -6,7 +6,7 @@ class RegistrationsController <  Devise::RegistrationsController
 
   def create
     @user = User.new(params[:user])
-    if simple_captcha_valid?
+    if @user.valid_with_captcha?
       if @user.save
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success) if is_navigational_format?
@@ -14,7 +14,6 @@ class RegistrationsController <  Devise::RegistrationsController
         render action: :new
       end
     else
-      @user.valid_with_captcha?
       render action: :new
     end
   end
