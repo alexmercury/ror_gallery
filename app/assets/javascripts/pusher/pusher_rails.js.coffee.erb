@@ -5,15 +5,7 @@
     channelBind: null
 
     constructor: (channelString) ->
-      Pusher.host = '<%=# Settings.pusher.wss_host %>'
-      Pusher.ws_port = <%=# Settings.pusher.wss_port.to_s %>
-      Pusher.wss_port = <%=# Settings.pusher.wss_port.to_s %>
-      Pusher.sockjs_host = undefined
-      Pusher.sockjs_http_port = undefined
-      Pusher.sockjs_https_port = undefined
-      Pusher.sockjs_path = undefined
-
-      @pusher = new Pusher("<%=# Settings.pusher.app_key %>")
+      @pusher = new Pusher("<%= ENV['PUSHER_APP_KEY'] %>")
       @channel = channelString
 
       @channelBind = @pusher.subscribe(@channel)
