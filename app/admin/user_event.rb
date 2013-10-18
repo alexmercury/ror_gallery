@@ -6,7 +6,7 @@ ActiveAdmin.register_page 'User Events' do
 
   page_action :navigation, method: :get do
     @navigation = NavigationEvent.includes(:user).where('user_id = :id', id: params[:user_id]).order('created_at DESC').page(params[:page]).per 30
-     render 'admin/event/user_navigation'
+    render 'admin/event/user_navigation'
   end
 
   page_action :event_sign_in, method: :get do
