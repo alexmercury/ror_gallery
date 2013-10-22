@@ -27,8 +27,8 @@ class LikesController < ApplicationController
 
     like = Like.where('user_id = :user_id AND picture_id = :picture_id', user_id: current_user.id, picture_id: params[:picture_id]).first
 
-    if like.destroy
-
+    if like.respond_to?(:destroy)
+      like.destroy
       Resque.enqueue(UserEvents,
                      {user_id: current_user.id,
                       kind: 'dislike',

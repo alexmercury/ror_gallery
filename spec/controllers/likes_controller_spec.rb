@@ -57,6 +57,17 @@ describe LikesController do
       Like.count.should be 0
     end
 
+    it 'Should not deleted' do
+      sign_in @user
+      Like.count.should be 0
+      post :create, picture_id: @picture.id
+      assert_response :success
+      Like.count.should be 1
+
+      post :destroy, picture_id: 0
+      Like.count.should be 1
+    end
+
   end
 
 end
