@@ -1,9 +1,8 @@
 %h2= I18n.t('devise_views.registration.new.title')
-%div
-  - unless devise_error_messages!.blank?
-    .alert.alert-error
-      %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
-      = devise_error_messages!
+- unless devise_error_messages!.blank?
+  .alert.alert-error
+    %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+    = devise_error_messages!
 = form_for(resource, as: resource_name, url: user_registration_path) do |f|
   %div
     = f.text_field :name, autofocus: true, placeholder: I18n.t('devise_views.registration.new.name_placeholder')

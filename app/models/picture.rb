@@ -14,7 +14,7 @@ class Picture < ActiveRecord::Base
   has_attached_file :image,
                     storage: :dropbox,
                     dropbox_credentials: Rails.root.join('config/dropbox.yml'),
-                    path: 'ror_gallery/:id__:style__:filename',
+                    path: "ror_gallery_#{Rails.env}/:id__:style__:filename",
                     default_url: 'no_image.gif',
                     styles: {thumb:'256x256>', default: '128x128>'}
 
@@ -28,6 +28,10 @@ class Picture < ActiveRecord::Base
     rescue
       puts 'Redis exeption...'
     end
+  end
+
+  def to_param
+    category.slug.to_s
   end
 
 end

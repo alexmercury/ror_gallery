@@ -9,12 +9,8 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @picture = Picture.includes(:users).find(params[:id])
+    @picture = Picture.includes(:users, :category).where('pictures.id = :id AND categories.slug = :slug', id: params[:id], slug: params[:slug]).first
     @comments = Comment.includes(:user).where('picture_id = :id', id: params[:id]).order('created_at DESC').page(params[:page])
-
-    unless @picture.category.title == params[:title]
-      redirect_to categories_path
-    end
   end
 
   def load_comments

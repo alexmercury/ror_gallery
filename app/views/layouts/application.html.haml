@@ -15,7 +15,7 @@
             %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'home' ) ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.home'), locale_root_url
             %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
-              = link_to I18n.t('application.menu.categories'), locale_categories_url
+              = link_to I18n.t('application.menu.categories'), categories_url
             %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
               = link_to I18n.t('application.menu.pictures'), pictures_url
             %li{class: "#{ (controller.controller_name == 'comments') ? 'active' : 'not-active'}"}
