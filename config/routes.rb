@@ -14,9 +14,9 @@ RorGallery::Application.routes.draw do
 
   scope '(:locale)', locale: /en|ru/ do
     get '/' => 'pictures#home', as: :locale_root
-    get 'categories'=> 'categories#index', as: :locale_categories
-    get 'categories/:title' => 'categories#show', as: :locale_category
-    get 'categories/:title/:id' => 'pictures#show', as: :locale_picture
+    get 'categories/:slug/:id' => 'pictures#show', as: :picture
+
+    resources :categories, only: [:index, :show]
 
     resources :pictures, only: [:index] do
       get ':page', action: :index, on: :collection

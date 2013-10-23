@@ -1,15 +1,15 @@
-- title I18n.t('views.categories.show.page_title', category: @category.title_loc)
+- title I18n.t('views.categories.show.page_title', category: @category.title_locale)
 - if user_signed_in?
   - if @category.users.include? current_user
     .subscribe-image
       = image_tag 'subscribe.png', width: 128
-%h1.text-center= I18n.t('views.categories.show.title', category: @category.title_loc)
+%h1.text-center= I18n.t('views.categories.show.title', category: @category.title_locale)
 %div
   #featured
     %ul
       - @pictures.each do |picture|
         %li
-          = link_to locale_picture_path( picture.category.title, picture.id) do
+          = link_to picture_path(picture, picture.id) do
             %span.bottom-label
               %i.icon-thumbs-up
               = picture.likes_count

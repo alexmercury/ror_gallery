@@ -1,10 +1,10 @@
 ActiveAdmin.register Category do
 
-  filter :title, as: :string
+  filter :slug, as: :string
 
   index do
     selectable_column
-    column :title
+    column :slug
     column 'Locale title ru' do |category|
       category.title_locale(:ru)
     end
@@ -19,10 +19,10 @@ ActiveAdmin.register Category do
 
   form html:{multipart: true} do |f|
     f.inputs 'Category Details' do
-      f.input :title, as: :string
-        f.translated_inputs do |t|
-          t.input :title_locale, as: :string
-        end
+      f.input :slug, as: :string
+      f.translated_inputs do |t|
+        t.input :title_locale, as: :string
+      end
     end
     f.actions
   end

@@ -9,5 +9,5 @@
     .well.well-small
       = comment.description
       %br
-      = link_to I18n.t('views.comments.index.picture_link'), locale_picture_path(comment.picture.category.title, comment.picture.id)
+      = link_to I18n.t('views.comments.index.picture_link'), picture_path(comment.picture, comment.picture.id)
 = paginate @comments, window: 2
