@@ -35,6 +35,8 @@ gem 'rails_config'
 gem 'globalize3', '~> 0.3.0'
 gem 'activeadmin-globalize3'
 
+gem 'friendly_id'
+
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

@@ -3,7 +3,7 @@
 %ul.nav.nav-tabs.nav-stacked
   - @categories.each do |category|
     %li
-      = link_to locale_category_path(category.title), title: I18n.t('views.categories.index.link_title', category: category.title_loc) do
+      = link_to category_path(category), title: I18n.t('views.categories.index.link_title', category: category.title_locale) do
         %table{width: '100%'}
           %tbody
             %tr
@@ -14,7 +14,7 @@
                   - else
                     %span.subscribe{id: category.id, title: I18n.t('views.categories.index.subscribe_title')}
               %td{width: '20%'}
-                = "#{category.title_loc} (#{category.pictures_count})"
+                = "#{category.title_locale} (#{category.pictures_count})"
               %td.sub{align: 'center'}
                 -category.included_pictures.each do |pic|
                   = image_tag pic.image.url(:default, download: true), alt: pic.image_file_name
