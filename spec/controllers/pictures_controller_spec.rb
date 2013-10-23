@@ -48,14 +48,14 @@ describe PicturesController do
   context 'GET #show' do
 
     it 'render #show' do
-      get :show, id: Picture.last.id, title: @category.title
+      get :show, id: Picture.last.id, slug: @category.slug
       assert_template :show
       assert_template layout: 'layouts/application'
       assert_response :success
     end
 
     it 'assigns picture to @picture' do
-      get :show, id: Picture.last.id, title: @category.title
+      get :show, id: Picture.last.id, slug: @category.slug
       assigns(:picture).blank?.should be false
       assigns(:picture).should.equal? Picture.last
     end

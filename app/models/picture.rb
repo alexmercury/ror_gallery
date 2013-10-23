@@ -30,4 +30,8 @@ class Picture < ActiveRecord::Base
     end
   end
 
+  def to_param
+    category.slug.to_s
+  end
+
 end
