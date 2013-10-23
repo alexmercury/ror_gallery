@@ -41,14 +41,14 @@ describe CategoriesController do
   context 'GET #show' do
 
     it 'render #show' do
-      get :show, title: Category.last.title
+      get :show, id: Category.last.slug
       assert_template :show
       assert_template layout: 'layouts/application'
       assert_response :success
     end
 
     it 'assigns category to @category' do
-      get :show, title: Category.last.title
+      get :show, id: Category.last.slug
       assigns(:category).blank?.should be false
       assigns(:category).should.equal? Category.last
     end
@@ -57,7 +57,7 @@ describe CategoriesController do
       puts 'Load image to DROPBOX'
       Category.last.pictures.create(title: 'Image new', image: File.open(Rails.root.join('spec/factories/image/img.gif')))
       puts 'DONE'
-      get :show, title: Category.last.title
+      get :show, id: Category.last.slug
       assigns(:pictures).blank?.should be false
       assigns(:pictures).include?(Picture.last).should be true
       Picture.destroy_all
