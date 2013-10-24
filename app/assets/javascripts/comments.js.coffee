@@ -38,8 +38,8 @@ $(document).ready ->
 
   pusher = new PusherRails('comments_channel')
   pusher.channelBind.bind 'comment_event', (data) ->
-    if $('#comment_picture_id').val().toString() == data.comment.picture_id.toString()
-      unless data.user_name.toString() == $('#userModalLabel').text()
+    if $('#picture').attr('data-id').toString() == data.comment.picture_id.toString()
+      if data.user_name.toString() != $('#userModalLabel').attr('data-user_name').toString()
         $('#comments_count').text(parseInt($('#comments_count').text()) + 1)
         $('.picture-comments-container .comments-container').append commentHtml(data.comment, data.user_name)
         $('.picture-comments-container .comments-container .load-comment').show ->
