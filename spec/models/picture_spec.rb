@@ -35,4 +35,16 @@ describe Picture  do
     it {should validate_numericality_of(:category_id).only_integer}
   end
 
+  context 'to param' do
+
+    it 'To param' do
+      category = FactoryGirl.create(:category)
+      category.pictures.create(title: 'image_new', image: File.open(Rails.root.join('spec/factories/image/img.gif')))
+      picture = Picture.includes(:category).last
+      picture.to_param.should.equal? category.slug
+      Picture.destroy_all
+    end
+
+  end
+
 end

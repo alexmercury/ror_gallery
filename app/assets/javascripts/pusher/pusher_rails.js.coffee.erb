@@ -13,7 +13,7 @@
       Pusher.sockjs_https_port = undefined
       Pusher.sockjs_path = undefined
 
-      @pusher = new Pusher("<%= Settings.pusher.app_key %>")
+      @pusher = new Pusher('<%= Settings.pusher.app_key %>')
       @channel = channelString
 
       @channelBind = @pusher.subscribe(@channel)

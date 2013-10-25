@@ -50,4 +50,17 @@ describe User  do
     it {should ensure_length_of(:name).is_at_least(3).is_at_most(100)}
   end
 
+  context 'User find_for_facebook_oauth' do
+    it 'Should return user' do
+      data = OpenStruct.new({provider: 'facebook', uid: '123456',
+                             info: OpenStruct.new({email: 'user@mail.com'}),
+                             extra: OpenStruct.new({raw_info: OpenStruct.new({name: 'user_fb'})}) })
+      User.find_for_facebook_oauth(data)
+      User.last.name.should.equal? 'user_fb'
+      user = User.find_for_facebook_oauth(data)
+      user.name.should.equal? 'user_fb'
+      User.count.should be 1
+    end
+  end
+
 end

@@ -2,7 +2,7 @@
   #userModal.modal.hide.fade{aria:{hidden: 'true'}, aria:{labelledby: 'userModalLabel'}, role: 'dialog', tabindex: '-1'}
     .modal-header
       %button.close{aria:{hidden: 'true'}, data:{dismiss: 'modal'}, type: 'button'} ×
-      %h3#userModalLabel
+      %h3#userModalLabel{data:{user_name: ''}}
         = I18n.t('views.shared.user_login.title')
     .modal-body
       = form_for(resource, as: resource_name, url: user_session_path) do |f|

@@ -27,7 +27,7 @@
         %span#comments_count= "#{@picture.comments_count}"
         %i.icon-thumbs-up.icon-white
         %span#likes_count= "#{@picture.likes_count}"
-      = image_tag @picture.image.url(download: true), id: 'picture', alt: @picture.image_file_name, class: 'img-polaroid'
+      = image_tag @picture.image.url(download: true), id: 'picture', data:{id: "#{@picture.id}"}, alt: @picture.image_file_name, class: 'img-polaroid'
   - if user_signed_in?
     = form_for @picture.comments.build, url: comment_create_path, method: :post, remote: true do  |f|
       .input-append

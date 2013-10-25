@@ -2,7 +2,7 @@
   #userModal.modal.hide.fade{aria:{hidden: 'true'}, aria:{labelledby: 'userModalLabel'}, role: 'dialog', tabindex: '-1'}
     .modal-header
       %button.close{aria:{hidden: 'true'}, data:{dismiss: 'modal'}, type: 'button'} ×
-      %h3#userModalLabel
+      %h3#userModalLabel{data:{user_name: current_user.name}}
         = current_user.name
         = link_to edit_user_registration_path do
           %i.icon-edit

@@ -5,6 +5,9 @@ describe PicturesController do
   before :each do
     @category = FactoryGirl.create(:category)
     @category.pictures.create(title: 'image_new', image: File.open(Rails.root.join('spec/factories/image/img.gif')))
+    @picture = Picture.first
+    @user = FactoryGirl.create(:user)
+    @user.comments.create(description: 'Hello !!!', picture_id: @picture.id, user_id: @user.id)
   end
 
   after :each do
@@ -58,6 +61,18 @@ describe PicturesController do
       get :show, id: Picture.last.id, slug: @category.slug
       assigns(:picture).blank?.should be false
       assigns(:picture).should.equal? Picture.last
+    end
+
+  end
+
+  context 'POST #load_comments' do
+
+    it ' load_comments' do
+      post :load_comments, id: @picture.id, page: 1, format: :json
+      assert_response :success
+      hash = (JSON.parse(response.body.to_s))[0]
+      puts hash.class
+      hash['id'].to_i.should.equal? Comment.first.id
     end
 
   end
