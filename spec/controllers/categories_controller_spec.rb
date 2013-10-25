@@ -86,6 +86,17 @@ describe CategoriesController do
       assert_response :success
       CategorySubscription.count.should be 0
     end
+
+    it 'NOT subscribe & unsubscribe action' do
+      user = FactoryGirl.create(:user)
+      sign_in user
+      post :subscribe
+      CategorySubscription.count.should be 0
+
+      post :unsubscribe, category_id: 0
+      CategorySubscription.count.should be 0
+    end
+
   end
 
 end
