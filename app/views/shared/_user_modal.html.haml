@@ -1,0 +1,49 @@
+- content_for :modal_content do
+  #userModal.modal.hide.fade{aria:{hidden: 'true'}, aria:{labelledby: 'userModalLabel'}, role: 'dialog', tabindex: '-1'}
+    .modal-header
+      %button.close{aria:{hidden: 'true'}, data:{dismiss: 'modal'}, type: 'button'} ×
+      %h3#userModalLabel{data:{user_name: current_user.name}}
+        = current_user.name
+        = link_to edit_user_registration_path do
+          %i.icon-edit
+    .modal-body
+      %span.badge.badge-inverse
+        %i.icon-comment.icon-white
+        = current_user.comments_count
+      %span.badge.badge-inverse
+        %i.icon-thumbs-up.icon-white
+        = current_user.likes_count
+      %span.badge.badge-inverse
+        %i.icon-calendar.icon-white
+        = ((Time.now - Time.parse(current_user.created_at.to_s))/1.days.seconds).round()
+      %h4= I18n.t('views.shared.user_modal.title')
+      .alert.alert-success
+        %div
+          %strong= I18n.t('views.shared.user_modal.email')
+          %i= current_user.email
+        %div
+          %strong= I18n.t('views.shared.user_modal.registration')
+          %i= current_user.created_at.strftime("%m.%d.%Y")
+        - unless current_user.provider.blank?
+          %div
+            %i= I18n.t('views.shared.user_modal.reg_with')
+            %strong= current_user.provider
+        %div
+          %strong= I18n.t('views.shared.user_modal.last_update')
+          %i= current_user.updated_at.strftime("%m.%d.%Y")
+        %div
+          = link_to I18n.t('views.shared.user_modal.edit_profile'), edit_user_registration_path
+      %h4= I18n.t('views.shared.user_modal.session_settings')
+      .alert.alert-info
+        %div
+          %strong= I18n.t('views.shared.user_modal.ip')
+          %i= current_user.current_sign_in_ip
+        %div
+          %strong= I18n.t('views.shared.user_modal.sign_in', count: current_user.sign_in_count)
+          %i= current_user.current_sign_in_at.strftime("%m.%d.%Y #{I18n.t('views.shared.user_modal.at')} %H:%M")
+    .modal-footer
+      = link_to destroy_user_session_path, class: 'btn btn-danger', method:  :delete, confirm: I18n.t('views.shared.user_modal.sign_out_confirm') do
+        %i.icon-off.icon-white
+        = I18n.t('views.shared.user_modal.sign_out')
+      %button.btn{aria:{hidden: 'true'}, data:{dismiss: 'modal'}}
+        = I18n.t('views.shared.user_modal.button_close')

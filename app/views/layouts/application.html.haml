@@ -1,0 +1,55 @@
+!!!
+%html
+  %head
+    %title= content_for?(:title) ? content_for(:title) : 'Ror Gallery'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    = yield :head_script
+    = csrf_meta_tags
+  %body
+    .container
+      .content-wrapper
+        %header.well.well-small.well-inverse
+
+          %ul.nav.nav-pills.nav-inverse.pull-left
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'home' ) ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.home'), locale_root_url
+            %li{class: "#{ controller.controller_name == 'categories' ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.categories'), categories_url
+            %li{class: "#{ (controller.controller_name == 'pictures' && controller.action_name == 'index' ) ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.pictures'), pictures_url
+            %li{class: "#{ (controller.controller_name == 'comments') ? 'active' : 'not-active'}"}
+              = link_to I18n.t('application.menu.comments'), comments_url
+          %ul.nav.nav-pills.nav-inverse.pull-right
+            - unless 'registrations passwords sessions'.include? controller.controller_name
+              %li
+                = link_to '#userModal', data:{toggle: 'modal'}, role: 'button' do
+                  %i.icon-user.icon-white
+                  - if user_signed_in?
+                    = current_user.name
+                    - render partial: 'shared/user_modal'
+                  - else
+                    = I18n.t('application.menu.login')
+                    - render partial: 'shared/user_login'
+            %li
+              - if I18n.locale == :en
+                = link_to locale: :ru do
+                  %i.flag.flag-ru
+                  RU
+              - else
+                = link_to locale: :en do
+                  %i.flag.flag-en
+                  EN
+        .content
+          - if flash[:notice]
+            %p.alert.alert-success
+              = flash.now[:notice]
+              %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+          - if flash[:alert]
+            %p.alert.alert-error
+              = flash.now[:alert]
+              %button.close{aria:{hidden: 'true'},data:{dismiss: 'alert'}, type: 'button'} ×
+          = yield
+      #modal_content
+        = yield :modal_content
+      %footer.well.text-center.well-inverse= I18n.t('application.copyright', year: DateTime.now.strftime('%Y'))

@@ -1,0 +1,12 @@
+- title I18n.t('views.comments.index.page_title')
+%h1.text-center= I18n.t('views.comments.index.title')
+.all-comments#comments-all
+  - @comments.each do |comment|
+    .comment-div
+      %span.label.label-inverse= comment.user.name
+      %span.label.label-info.label-right=  comment.created_at.strftime("%m-%d-%Y #{I18n.t('views.comments.index.at')} %H:%M")
+      .well.well-small
+        = comment.description
+        %br
+        = link_to I18n.t('views.comments.index.picture_link'), picture_path(comment.picture, comment.picture.id)
+= paginate @comments, window: 2

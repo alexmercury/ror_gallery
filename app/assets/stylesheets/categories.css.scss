@@ -1,0 +1,25 @@
+.subscribe {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: url(/assets/mail.png);
+}
+
+.subscribe:hover {
+  background-image: url(/assets/mail3.png);
+}
+
+.unsubscribe {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: url(/assets/mail2.png);
+}
+
+.unsubscribe:hover {
+  background-image: url(/assets/mail3.png);
+}
+
+.subscribe-image {
+  float: right;
+}

@@ -1,0 +1,11 @@
+.flag {
+  display: block;
+  float: left;
+  margin: 0 2px 0 0;
+  width: 25px;
+  height: 15px;
+  background:url(/assets/flags.png) no-repeat
+}
+
+.flag.flag-en {background-position: -25px 0}
+.flag.flag-ru {background-position: 0 -15px}

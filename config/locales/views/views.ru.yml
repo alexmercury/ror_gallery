@@ -1,0 +1,51 @@
+ru:
+  views:
+    shared:
+      user_login:
+        title: 'Выполните вход'
+        email_placeholder: 'Введите свой email'
+        password_placeholder: 'Введите свой пароль'
+        remember_me: 'Запомнить меня'
+        login: 'Войти'
+        facebook_login: 'Войти через <b>facebook</b>'
+        register: 'Регистрация'
+      user_modal:
+        title: 'Информация о вас:'
+        email: 'Ваш email:'
+        registration: 'Зарегистрированы:'
+        reg_with: 'с помощью'
+        last_update: 'Последние изменения:'
+        edit_profile: 'Редактировать профиль'
+        session_settings: 'Параметры сессии:'
+        ip: 'IP'
+        sign_in: 'Вход(%{count})'
+        at: 'в'
+        sign_out: 'Выйти'
+        sign_out_confirm: 'Вы уверены ?'
+        button_close: 'Закрыть'
+    categories:
+      index:
+        page_title: 'Ror Gallery | Категории'
+        title: 'Категории картинок сайта Ror Gallery'
+        link_title: 'Категория: %{category}'
+        unsubscribe_title: 'отписаться'
+        subscribe_title: 'подписаться'
+      show:
+        page_title: 'Ror Gallery | Категория %{category}'
+        title: 'Категория %{category}'
+    pictures:
+      index:
+        page_title: 'Ror Gallery | Картинки'
+        title: 'Картинки сайта Ror Gallery'
+      show:
+        page_title: 'Ror Gallery | %{title}'
+        button_comments_load: 'Загрузить ещё 5 комментариев...'
+        button_add_comment: 'добавить'
+        comment_placeholder: 'Текст комментария'
+        user_not_login: 'Необходимо зарегистрироваться чтобы оставлять комментарии'
+    comments:
+      index:
+        page_title: 'Ror Gallery | Комментарии'
+        title: 'Комментарии к картинкам сайта Ror Gallery'
+        at: 'в'
+        picture_link: 'ссылка на картинку'

@@ -1,0 +1,17 @@
+en:
+  application:
+    copyright: 'RoR Mercury © %{year} • All rights reserved'
+    menu:
+      home: 'Home'
+      categories: 'Categories'
+      pictures: 'Pictures'
+      comments: 'Comments'
+      login: 'Login'
+
+  views:
+    pagination:
+      first: '&laquo; First'
+      last: 'Last &raquo;'
+      previous: '&lsaquo; Prev'
+      next: 'Next &rsaquo;'
+      truncate: '...'

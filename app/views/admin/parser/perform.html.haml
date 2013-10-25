@@ -1,0 +1,30 @@
+.main_content_wrapper
+  - if @img_src
+    .index_as_table
+      %table.index_table.index{border: 0, cellpadding: 0, cellspacing: 0}
+        %thead
+          %tr
+            %th{width: 20}
+            %th{width: 150} image
+            %th Form for add image
+            %th{width: 30}
+        %tbody
+          - @img_src.each do |img|
+            %tr
+              %td
+                %button{id: 'close_row'} ×
+              %td.pointer
+                %img{src: img.to_s, title: 'click to show full size', width: 100}
+              %td
+                = form_for Picture.new, url: admin_parser_save_path, method: :post, remote: true do |f|
+                  = f.text_field :title, value: "Picture #{(img.rpartition('/')[2]).rpartition('.')[0]}", style: 'width: 100px'
+                  = f.select(:category_id, options_for_select(@categories.map { |j| [j.title, j.id] }))
+                  = hidden_field_tag :image_url, img.to_s
+                  = f.submit 'Submit', data: {disable_with: 'Please wait...'}
+              %td
+                %button{id: 'close_row'} delete
+  %div#lightbox
+    .overlay
+    .img-box
+      %img
+      %button{id: 'close_lightbox'} ×

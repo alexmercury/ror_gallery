@@ -1,58 +1,42 @@
-Tit::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+RorGallery::Application.routes.draw do
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  root :to => 'pictures#home'
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  get '/admin/user_events/:user_id/navigation' => 'admin/user_events#navigation', as: :admin_event_user_navigation
+  get '/admin/user_events/:user_id/user_sign_in' => 'admin/user_events#event_sign_in', as: :admin_event_user_sign_in
+  get '/admin/user_events/:user_id/user_sign_out' => 'admin/user_events#event_sign_out', as: :admin_event_user_sign_out
+  get '/admin/user_events/:user_id/like' => 'admin/user_events#event_like', as: :admin_event_like
+  get '/admin/user_events/:user_id/subscribe' => 'admin/user_events#event_subscribe', as: :admin_event_subscribe
+  get '/admin/user_events/:user_id/comments' => 'admin/user_events#event_comments', as: :admin_event_comments
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  scope '(:locale)', locale: /en|ru/ do
+    get '/' => 'pictures#home', as: :locale_root
+    get 'categories/:slug/:id' => 'pictures#show', as: :picture
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+    resources :categories, only: [:index, :show]
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+    resources :pictures, only: [:index] do
+      get ':page', action: :index, on: :collection
+    end
+    resources :comments, only: [:index] do
+      get ':page', action: :index, on: :collection
+    end
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations'}
+  end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  # POST method for ajax
+  post 'load_comments' => 'pictures#load_comments'
+  post 'comment'=> 'comments#create', as: :comment_create
+  post 'like' => 'likes#create'
+  post 'dislike' => 'likes#destroy'
+  post 'subscribe' => 'categories#subscribe'
+  post 'unsubscribe' => 'categories#unsubscribe'
+  post '/pusher/auth'
 
-  # See how all your routes lay out with "rake routes"
+  mount Resque::Server, :at => '/resque'
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

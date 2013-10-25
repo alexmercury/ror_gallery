@@ -15,3 +15,7 @@
 /tmp
 
 .idea/
+
+public/assets/
+config/*.yml
+coverage/

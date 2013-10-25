@@ -1,0 +1,32 @@
+- content_for :modal_content do
+  #userModal.modal.hide.fade{aria:{hidden: 'true'}, aria:{labelledby: 'userModalLabel'}, role: 'dialog', tabindex: '-1'}
+    .modal-header
+      %button.close{aria:{hidden: 'true'}, data:{dismiss: 'modal'}, type: 'button'} ×
+      %h3#userModalLabel{data:{user_name: ''}}
+        = I18n.t('views.shared.user_login.title')
+    .modal-body
+      = form_for(resource, as: resource_name, url: user_session_path) do |f|
+        .input-prepend
+          %span.add-on
+            %label.control-label{for: 'user_email'}
+              %i.icon-envelope
+          = f.email_field :email, placeholder: I18n.t('views.shared.user_login.email_placeholder')
+        .input-prepend
+          %span.add-on
+            %label.control-label{for: 'user_password'}
+              %i.icon-lock
+          = f.password_field :password, placeholder: I18n.t('views.shared.user_login.password_placeholder')
+        - if devise_mapping.rememberable?
+          %label
+            = f.check_box :remember_me
+            %span
+              = I18n.t('views.shared.user_login.remember_me')
+        .text-right
+          = f.submit I18n.t('views.shared.user_login.login'), class: 'btn btn-inverse'
+        = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-link' do
+          = image_tag '/assets/facebook.png', width: 40
+          = raw I18n.t('views.shared.user_login.facebook_login')
+    .modal-footer
+      = link_to new_user_registration_url, class: 'btn' do
+        %i.icon-pencil
+        %span= I18n.t('views.shared.user_login.register')

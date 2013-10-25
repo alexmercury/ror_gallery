@@ -1,0 +1,20 @@
+%h3= I18n.t('devise_views.session.new.title')
+= form_for(resource, as: resource_name, url: user_session_path) do |f|
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_email'}
+        %i.icon-envelope
+    = f.email_field :email, placeholder: I18n.t('devise_views.session.new.email_placeholder')
+  %br
+  .input-prepend
+    %span.add-on
+      %label.control-label{for: 'user_password'}
+        %i.icon-lock
+    = f.password_field :password, placeholder: I18n.t('devise_views.session.new.password_placeholder')
+  - if devise_mapping.rememberable?
+    %label
+      = f.check_box :remember_me
+      %span
+        = I18n.t('devise_views.session.new.remember_me')
+  = f.submit I18n.t('devise_views.session.new.login'), class: 'btn btn-info'
+= render 'devise/shared/links'

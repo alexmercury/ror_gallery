@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Category.destroy_all
+
+Dir[Rails.root.join('db/pic_dir/*')].each do |directory|
+
+  category = Category.create(title: directory.rpartition('/')[2])
+  print "Create category: #{directory.rpartition('/')[2]}\n"
+
+  Dir[directory + '/*'].each do |file|
+    print file.rpartition('/')[2] + ', '
+    category.pictures.create(title: "Picture: #{file.rpartition('/')[2]}", image: File.open(file))
+  end
+
+  print "\n[DONE]\n"
+
+end

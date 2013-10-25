@@ -1,0 +1,17 @@
+ru:
+  application:
+    copyright: 'RoR Gallery © %{year} • Все права защищены'
+    menu:
+      home: 'Главная'
+      categories: 'Категории'
+      pictures: 'Картинки'
+      comments: 'Комментарии'
+      login: 'Войти'
+
+  views:
+    pagination:
+      first: '&laquo; Первая'
+      last: 'Последняя &raquo;'
+      previous: '&lsaquo; Предыдущая'
+      next: 'Следующая &rsaquo;'
+      truncate: '...'
