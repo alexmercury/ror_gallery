@@ -1,6 +1,6 @@
 commentHtml = (comment, user_name, flag) ->
   link = ''
-  if flag != 0
+  if flag
     link = '<br>' + flag
 
   div = '<div class="load-comment comment-div" style="display: none;">'\
@@ -35,7 +35,7 @@ $(document).ready ->
     else
       $('#comment_description').val('')
       $('#comments_count').text(parseInt($('#comments_count').text()) + 1)
-      $('.picture-comments-container .comments-container').append commentHtml(data, data.user.name, 0)
+      $('.picture-comments-container .comments-container').append commentHtml(data, data.user.name, null)
       $('.picture-comments-container .comments-container .load-comment').show ->
         $('.picture-comments-container').scrollTop $('.comments-container').height()
         if $('.comment-div').length == 6
@@ -51,7 +51,7 @@ $(document).ready ->
     if $('#picture').attr('data-id').toString() == data.comment.picture_id.toString()
       if data.user_name.toString() != $('#userModalLabel').attr('data-user-name').toString()
         $('#comments_count').text(parseInt($('#comments_count').text()) + 1)
-        $('.picture-comments-container .comments-container').append commentHtml(data.comment, data.user_name, 0)
+        $('.picture-comments-container .comments-container').append commentHtml(data.comment, data.user_name, null)
         $('.picture-comments-container .comments-container .load-comment').show ->
           $('.picture-comments-container').scrollTop $('.comments-container').height()
           if $('.comment-div').length == 6
