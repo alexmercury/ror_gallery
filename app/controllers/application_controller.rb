@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   include SimpleCaptcha::ControllerHelpers
 
   protect_from_forgery
-  after_filter :event_user
   before_filter :set_locale
 
   private
@@ -31,18 +30,6 @@ class ApplicationController < ActionController::Base
                       kind_id: current_user.id
                      })
       categories_path
-    end
-  end
-
-  def event_user
-    if !!current_user
-      if 'index show'.include?(params[:action].to_s)
-        Resque.enqueue(UserEventNavigation,
-                       {url: request.original_url.to_s,
-                        user_id: current_user.id.to_s,
-                        created_at: DateTime.now
-                       })
-      end
     end
   end
 
